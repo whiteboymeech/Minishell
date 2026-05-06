@@ -6,7 +6,7 @@
 /*   By: mabenois <mabenois@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 18:25:47 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 20:41:07 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 19:23:32 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -39,7 +39,7 @@ int	main(int ac, char **av, char **envp)
 	shell.paths = NULL;
 	shell.exit = 0;
 	shell.tokens = NULL;
-	run_signal();
+	run_signal(&shell);
 	if (isatty(STDIN_FILENO))
 		print_ascii_art();
 	run_all(&shell);

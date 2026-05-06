@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:54:02 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:37:22 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 19:25:39 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,13 @@ typedef struct s_vars
 
 typedef struct s_minish
 {
-	int				exit;
-	char			**envp;
-	char			**paths;
-	t_tok			*tokens;
-	t_env			*env;
-}					t_minish;
+	int					exit;
+	struct sigaction	sa;
+	char				**envp;
+	char				**paths;
+	t_tok				*tokens;
+	t_env				*env;
+}	t_minish;
 
 typedef struct s_action
 {
@@ -183,7 +184,7 @@ void				expand_tokens(t_tok **tokens, t_minish *shell);
 void				push_action(t_action **actions, t_action_type type,
 						t_tok *lex);
 void				free_argv(char **argv);
-void				run_signal(void);
+void				run_signal(t_minish *shell);
 void				print_ascii_art(void);
 pid_t				run_pipeline(t_tok *lexed, t_minish *shell, int piped);
 pid_t				exec_token(t_tok *curr, t_minish *shell, int piped);

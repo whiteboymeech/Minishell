@@ -6,11 +6,12 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 01:08:44 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:21:43 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 17:10:32 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
+/*
 char	*build_prompt(char *dir)
 {
 	char	*ret;
@@ -60,3 +61,4 @@ int	ft_read_prompt(char **ret)
 	}
 	return (0);
 }
+*/
