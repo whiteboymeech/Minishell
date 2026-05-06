@@ -1285,5 +1285,1292 @@
    "signal/sig.o"
   ],
   "file": "signal/sig.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_atoi.c",
+   "-o",
+   "ft_atoi.o"
+  ],
+  "file": "ft_atoi.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_isalpha.c",
+   "-o",
+   "ft_isalpha.o"
+  ],
+  "file": "ft_isalpha.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strlen.c",
+   "-o",
+   "ft_strlen.o"
+  ],
+  "file": "ft_strlen.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_isalnum.c",
+   "-o",
+   "ft_isalnum.o"
+  ],
+  "file": "ft_isalnum.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_isascii.c",
+   "-o",
+   "ft_isascii.o"
+  ],
+  "file": "ft_isascii.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_isdigit.c",
+   "-o",
+   "ft_isdigit.o"
+  ],
+  "file": "ft_isdigit.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_isprint.c",
+   "-o",
+   "ft_isprint.o"
+  ],
+  "file": "ft_isprint.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_memset.c",
+   "-o",
+   "ft_memset.o"
+  ],
+  "file": "ft_memset.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_memcpy.c",
+   "-o",
+   "ft_memcpy.o"
+  ],
+  "file": "ft_memcpy.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_memmove.c",
+   "-o",
+   "ft_memmove.o"
+  ],
+  "file": "ft_memmove.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strlcpy.c",
+   "-o",
+   "ft_strlcpy.o"
+  ],
+  "file": "ft_strlcpy.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strlcat.c",
+   "-o",
+   "ft_strlcat.o"
+  ],
+  "file": "ft_strlcat.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_toupper.c",
+   "-o",
+   "ft_toupper.o"
+  ],
+  "file": "ft_toupper.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_tolower.c",
+   "-o",
+   "ft_tolower.o"
+  ],
+  "file": "ft_tolower.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strchr.c",
+   "-o",
+   "ft_strchr.o"
+  ],
+  "file": "ft_strchr.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strchr_int.c",
+   "-o",
+   "ft_strchr_int.o"
+  ],
+  "file": "ft_strchr_int.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strrchr.c",
+   "-o",
+   "ft_strrchr.o"
+  ],
+  "file": "ft_strrchr.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strncmp.c",
+   "-o",
+   "ft_strncmp.o"
+  ],
+  "file": "ft_strncmp.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_bzero.c",
+   "-o",
+   "ft_bzero.o"
+  ],
+  "file": "ft_bzero.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strdup.c",
+   "-o",
+   "ft_strdup.o"
+  ],
+  "file": "ft_strdup.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_memchr.c",
+   "-o",
+   "ft_memchr.o"
+  ],
+  "file": "ft_memchr.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_memcmp.c",
+   "-o",
+   "ft_memcmp.o"
+  ],
+  "file": "ft_memcmp.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_calloc.c",
+   "-o",
+   "ft_calloc.o"
+  ],
+  "file": "ft_calloc.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strnstr.c",
+   "-o",
+   "ft_strnstr.o"
+  ],
+  "file": "ft_strnstr.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strcmp.c",
+   "-o",
+   "ft_strcmp.o"
+  ],
+  "file": "ft_strcmp.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strchar.c",
+   "-o",
+   "ft_strchar.o"
+  ],
+  "file": "ft_strchar.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_substr.c",
+   "-o",
+   "ft_substr.o"
+  ],
+  "file": "ft_substr.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strjoin.c",
+   "-o",
+   "ft_strjoin.o"
+  ],
+  "file": "ft_strjoin.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strcat_allocated.c",
+   "-o",
+   "ft_strcat_allocated.o"
+  ],
+  "file": "ft_strcat_allocated.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strtrim.c",
+   "-o",
+   "ft_strtrim.o"
+  ],
+  "file": "ft_strtrim.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strcspn.c",
+   "-o",
+   "ft_strcspn.o"
+  ],
+  "file": "ft_strcspn.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strspn.c",
+   "-o",
+   "ft_strspn.o"
+  ],
+  "file": "ft_strspn.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strtok.c",
+   "-o",
+   "ft_strtok.o"
+  ],
+  "file": "ft_strtok.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_split.c",
+   "-o",
+   "ft_split.o"
+  ],
+  "file": "ft_split.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_itoa.c",
+   "-o",
+   "ft_itoa.o"
+  ],
+  "file": "ft_itoa.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strcat.c",
+   "-o",
+   "ft_strcat.o"
+  ],
+  "file": "ft_strcat.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_free_tab.c",
+   "-o",
+   "ft_free_tab.o"
+  ],
+  "file": "ft_free_tab.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_strmapi.c",
+   "-o",
+   "ft_strmapi.o"
+  ],
+  "file": "ft_strmapi.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_striteri.c",
+   "-o",
+   "ft_striteri.o"
+  ],
+  "file": "ft_striteri.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_putchar_fd.c",
+   "-o",
+   "ft_putchar_fd.o"
+  ],
+  "file": "ft_putchar_fd.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_putstr_fd.c",
+   "-o",
+   "ft_putstr_fd.o"
+  ],
+  "file": "ft_putstr_fd.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_putendl_fd.c",
+   "-o",
+   "ft_putendl_fd.o"
+  ],
+  "file": "ft_putendl_fd.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "ft_putnbr_fd.c",
+   "-o",
+   "ft_putnbr_fd.o"
+  ],
+  "file": "ft_putnbr_fd.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "gnl/get_next_line.c",
+   "-o",
+   "gnl/get_next_line.o"
+  ],
+  "file": "gnl/get_next_line.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY/libft",
+  "arguments": [
+   "cc",
+   "-g",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-c",
+   "gnl/get_next_line_utils.c",
+   "-o",
+   "gnl/get_next_line_utils.o"
+  ],
+  "file": "gnl/get_next_line_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/actions.c",
+   "-o",
+   "srcs/actions.o"
+  ],
+  "file": "srcs/actions.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/get_paths.c",
+   "-o",
+   "srcs/get_paths.o"
+  ],
+  "file": "srcs/get_paths.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/loop.c",
+   "-o",
+   "srcs/loop.o"
+  ],
+  "file": "srcs/loop.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/loop_more_utils.c",
+   "-o",
+   "srcs/loop_more_utils.o"
+  ],
+  "file": "srcs/loop_more_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/loop_more_more_utils.c",
+   "-o",
+   "srcs/loop_more_more_utils.o"
+  ],
+  "file": "srcs/loop_more_more_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/loop_utils.c",
+   "-o",
+   "srcs/loop_utils.o"
+  ],
+  "file": "srcs/loop_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/main.c",
+   "-o",
+   "srcs/main.o"
+  ],
+  "file": "srcs/main.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/run_pipeline.c",
+   "-o",
+   "srcs/run_pipeline.o"
+  ],
+  "file": "srcs/run_pipeline.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/search_and_launch.c",
+   "-o",
+   "srcs/search_and_launch.o"
+  ],
+  "file": "srcs/search_and_launch.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/search_and_launch_utils.c",
+   "-o",
+   "srcs/search_and_launch_utils.o"
+  ],
+  "file": "srcs/search_and_launch_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "srcs/valid_syntax.c",
+   "-o",
+   "srcs/valid_syntax.o"
+  ],
+  "file": "srcs/valid_syntax.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "lexer/lexer.c",
+   "-o",
+   "lexer/lexer.o"
+  ],
+  "file": "lexer/lexer.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "lexer/lexer_utils.c",
+   "-o",
+   "lexer/lexer_utils.o"
+  ],
+  "file": "lexer/lexer_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "lexer/lexer_more_utils.c",
+   "-o",
+   "lexer/lexer_more_utils.o"
+  ],
+  "file": "lexer/lexer_more_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/pwd.c",
+   "-o",
+   "build/pwd.o"
+  ],
+  "file": "build/pwd.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/echo.c",
+   "-o",
+   "build/echo.o"
+  ],
+  "file": "build/echo.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/run.c",
+   "-o",
+   "build/run.o"
+  ],
+  "file": "build/run.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/env.c",
+   "-o",
+   "build/env.o"
+  ],
+  "file": "build/env.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/env_utils.c",
+   "-o",
+   "build/env_utils.o"
+  ],
+  "file": "build/env_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/exit.c",
+   "-o",
+   "build/exit.o"
+  ],
+  "file": "build/exit.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/export.c",
+   "-o",
+   "build/export.o"
+  ],
+  "file": "build/export.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/unset.c",
+   "-o",
+   "build/unset.o"
+  ],
+  "file": "build/unset.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/cd.c",
+   "-o",
+   "build/cd.o"
+  ],
+  "file": "build/cd.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/cd_utils.c",
+   "-o",
+   "build/cd_utils.o"
+  ],
+  "file": "build/cd_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/env_more_utils.c",
+   "-o",
+   "build/env_more_utils.o"
+  ],
+  "file": "build/env_more_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "build/export_utils.c",
+   "-o",
+   "build/export_utils.o"
+  ],
+  "file": "build/export_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "redir/redir.c",
+   "-o",
+   "redir/redir.o"
+  ],
+  "file": "redir/redir.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "redir/redir_utils.c",
+   "-o",
+   "redir/redir_utils.o"
+  ],
+  "file": "redir/redir_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "pipes/pipes.c",
+   "-o",
+   "pipes/pipes.o"
+  ],
+  "file": "pipes/pipes.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "heredoc/heredoc.c",
+   "-o",
+   "heredoc/heredoc.o"
+  ],
+  "file": "heredoc/heredoc.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "heredoc/heredoc_utils.c",
+   "-o",
+   "heredoc/heredoc_utils.o"
+  ],
+  "file": "heredoc/heredoc_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "expand/expand_tokens.c",
+   "-o",
+   "expand/expand_tokens.o"
+  ],
+  "file": "expand/expand_tokens.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "expand/expand_utils.c",
+   "-o",
+   "expand/expand_utils.o"
+  ],
+  "file": "expand/expand_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "expand/expand_more_utils.c",
+   "-o",
+   "expand/expand_more_utils.o"
+  ],
+  "file": "expand/expand_more_utils.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "prompt/prompt_ascii_art.c",
+   "-o",
+   "prompt/prompt_ascii_art.o"
+  ],
+  "file": "prompt/prompt_ascii_art.c"
+ },
+ {
+  "directory": "/home/mabenois/Documents/C/minishell_RETRY",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I./includes",
+   "-I./libft",
+   "-c",
+   "signal/sig.c",
+   "-o",
+   "signal/sig.o"
+  ],
+  "file": "signal/sig.c"
  }
 ]

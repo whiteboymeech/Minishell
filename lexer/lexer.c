@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d43.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2027/03/12 02:15:41 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 19:06:30 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:13:48 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -80,6 +80,5 @@ t_tok	*lexer(char *ret)
 			return (NULL);
 	}
 	add_token_back(&tokens, new_node(TOKEN_EOF, ""));
-	print_lexer(tokens);
 	return (tokens);
 }

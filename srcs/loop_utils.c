@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 19:29:15 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:40:28 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -80,24 +80,14 @@ int	ft_read_prompt(char **ret)
 //		return (read_non_interactive(ret));
 	prompt = build_prompt();
 	*ret = readline(prompt);
-
-	if (*ret)
-		printf("\nret: '%s'\n", *ret);
-
 	free(prompt);
-	if (!(*ret))
+	if (*ret == NULL)
 	{
-		if (g_sig != SIGINT)
-		{
-			free(*ret);
-			*ret = ft_strdup("exit");
-			if (!(*ret))
-				return (1);
-			g_sig = -1;
-			return (0);
-		}
-		g_sig = -1;
-		return (1);
+		printf("exit\n");
+		*ret = ft_strdup("exit");
+		if (!(*ret))
+			return (1);
+		return (0);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@43.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 23:31:15 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:19:20 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:24:01 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ static void	setup_fds(t_exec_ctx *ctx)
 
 static void	exec_child(t_tok *lex, char *path, char **argv, t_exec_ctx *ctx)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
-	signal(SIGPIPE, SIG_DFL);
 	setup_fds(ctx);
 	execve(path, argv, ctx->envp);
 	if (errno == EACCES)
