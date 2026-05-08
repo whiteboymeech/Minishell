@@ -6,11 +6,24 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:18:59 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 16:33:07 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 01:00:19 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
+int	has_quotes(char *value)
+{
+	int	i;
+
+	i = 0;
+	while (value[i])
+	{
+		if (value[i] == '\'' || value[i] == '\"')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 void	normal_copy(char *value, char **res, char *buffer, int *i)
 {
 	char	*tmp;

@@ -6,21 +6,10 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 19:21:27 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 00:52:16 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
-
-static int	setup_pipeline(t_tok *lexed)
-{
-	if (open_redir_fds(lexed))
-		return (1);
-	open_pipes(lexed);
-	apply_pipes(lexed);
-	apply_redir_fds(lexed);
-	get_heredocs(lexed);
-	return (0);
-}
 
 pid_t	exec_empty_segment(int fd_out, int fd_in)
 {
@@ -49,8 +38,14 @@ pid_t	exec_empty_segment(int fd_out, int fd_in)
 void	parse_pipeline(t_tok *lexed, t_minish *shell)
 {
 	pid_t	last_pid;
+	int		redir_err;
 
-	if (setup_pipeline(lexed))
+	redir_err = open_redir_fds(lexed);
+	open_pipes(lexed);
+	apply_pipes(lexed);
+	apply_redir_fds(lexed);
+	get_heredocs(lexed);
+	if (redir_err && !has_pipe(lexed))
 	{
 		shell->exit = 1;
 		close_redir_fds(lexed);
@@ -63,3 +58,4 @@ void	parse_pipeline(t_tok *lexed, t_minish *shell)
 	wait_children(last_pid, shell);
 	close_redir_fds(lexed);
 }
+

@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:54:02 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 00:04:13 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 01:01:56 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ typedef struct s_tok
 	struct s_tok	*next;
 	struct s_tok	*prev;
 }					t_tok;
+
+typedef struct s_seg_fds
+{
+	t_tok			*exe;
+	int				fd_in;
+	int				fd_out;
+	int				redir_failed;
+}					t_seg_fds;
 
 typedef struct s_exec_ctx
 {
@@ -143,10 +151,12 @@ pid_t				ft_exec_if_found(t_tok *lex, char **paths, t_exec_ctx *ctx);
 void				add_env(t_env **env, char *key, char *value);
 void				free_env(t_env *env);
 void				print_env(t_env *env);
+void				free_argv_with_index(char **data, int index);
 void				env_unset(t_env **env, char *key);
 void				append_env(t_env **env, t_env *new);
 void				update_token_value(t_tok *current, char *exp);
 void				apply_redir_fds(t_tok *lexed);
+void				make_dissapear(t_minish *shell);
 void				close_redir_fds(t_tok *lexed);
 void				open_pipes(t_tok *lexed);
 void				close_pipe_fds(t_tok *tokens, int keep_in, int keep_out);
@@ -156,6 +166,7 @@ void				add_token_back(t_tok **tok, t_tok *new_element);
 void				free_tokens(t_tok **tokens);
 void				free_lexed(t_tok *lex);
 void				update_pwd(t_minish *shell, char *oldpwd);
+void				print_lexer(t_tok *tokens);
 void				parse_pipeline(t_tok *lexed, t_minish *shell);
 void				expand_tokens(t_tok **tokens, t_minish *shell);
 void				push_action(t_action **actions, t_action_type type,
@@ -167,7 +178,7 @@ void				print_ascii_art(void);
 void				wait_children(pid_t last_pid, t_minish *shell);
 void				write_from_token(t_tok *curr, t_tok *content_tok);
 void				setup_fds(t_exec_ctx *ctx);
-char					**env_to_array(t_env *env);
+char				**env_to_array(t_env *env);
 char				*get_env_val(t_env *env, char *key);
 char				*get_env_val_alloc(t_env *env, char *key);
 char				*get_env_value(t_env *env, char *key);
@@ -189,6 +200,7 @@ int					export_one(t_minish *ev, char *arg);
 int					pwd(t_tok *tokens);
 int					env(t_minish *shell, t_tok *tokens);
 int					export(t_minish *shell, t_tok *tokens);
+int					has_quotes(char *value);
 int					unset(t_tok *tokens, t_minish *shell);
 int					ft_exit(t_tok *tokens, t_minish *shell);
 int					cd(t_tok *tokens, t_minish *shell);
@@ -203,6 +215,5 @@ int					is_valid_identifier(const char *str);
 int					skip_spaces(char *ret, int i);
 int					add_word(char *ret, int i, t_tok **tokens, int start);
 int					add_token(char *ret, int *i, t_tok **tokens);
-
 
 #endif

@@ -6,10 +6,42 @@
 /*   By: adarolla <marvin@d43.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2027/03/12 02:15:41 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/07 18:36:03 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 00:09:19 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
+
+char	*show_type(t_tok *tokens)
+{
+	if (tokens->type == TOKEN_PIPE)
+		return (MAGENTA "TOKEN_PIPE" RESET);
+	if (tokens->type == TOKEN_REDIR_IN)
+		return (BLUE "TOKEN_REDIR_IN" RESET);
+	if (tokens->type == TOKEN_REDIR_OUT)
+		return (BLUE "TOKEN_REDIR_OUT" RESET);
+	if (tokens->type == TOKEN_EOF)
+		return (RED "TOKEN_EOF" RESET);
+	if (tokens->type == TOKEN_WORD)
+		return (GREEN "TOKEN_WORD" RESET);
+	if (tokens->type == TOKEN_APPEND)
+		return (YELLOW "TOKEN_APPEND" RESET);
+	if (tokens->type == TOKEN_HEREDOC)
+		return (CYAN "TOKEN_HEREDOC" RESET);
+	return ("UNKNOWN");
+}
+
+void	print_lexer(t_tok *tokens)
+{
+	while (tokens)
+	{
+		printf(CYAN "[value]" RESET " = [" GREEN "%s" RESET "]\n",
+			tokens->value);
+		printf(CYAN "[type]" RESET "  = [%s]\n", show_type(tokens));
+		if (tokens->type != TOKEN_EOF)
+			printf(MAGENTA "/==========\\\n" RESET);
+		tokens = tokens->next;
+	}
+}
 
 char	is_sep(char c)
 {

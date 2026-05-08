@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 18:11:51 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 00:22:22 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -14,6 +14,7 @@
 static int	handle_input(t_vars *vars, t_minish *shell)
 {
 	vars->lexed = lexer(vars->ret);
+	// print_lexer(vars->lexed);
 	if (!vars->lexed)
 	{
 		free(vars->ret);
@@ -40,8 +41,6 @@ static void	execute_input(t_vars *vars, t_minish *shell)
 	vars->lexed = NULL;
 	free(vars->ret);
 	vars->ret = NULL;
-	// free_env(shell->env);
-	// shell->env = NULL;
 }
 
 int	run_all(t_minish *shell)
@@ -53,7 +52,6 @@ int	run_all(t_minish *shell)
 	{
 		if (ft_read_prompt(&vars.ret) == 1)
 			continue ;
-		// printf("readline = [%s]\n", vars.ret );
 		if (!vars.ret)
 			break ;
 		add_history(vars.ret);

@@ -6,25 +6,12 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 18:29:39 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 19:28:26 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 01:01:34 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	has_quotes(char *value)
-{
-	int	i;
-
-	i = 0;
-	while (value[i])
-	{
-		if (value[i] == '\'' || value[i] == '\"')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 static t_tok	*new_word_tok(char *value)
 {
@@ -42,6 +29,18 @@ static t_tok	*new_word_tok(char *value)
 	return (tok);
 }
 
+static void	link_tok(t_tok **tokens, t_tok **prev, t_tok **last, t_tok *new)
+{
+	new->prev = *prev;
+	new->next = NULL;
+	if (*prev)
+		(*prev)->next = new;
+	else
+		*tokens = new;
+	*prev = new;
+	*last = new;
+}
+
 static t_tok	*insert_parts(t_tok **tokens, t_tok *prev, t_tok *next,
 		char **parts)
 {
@@ -56,14 +55,7 @@ static t_tok	*insert_parts(t_tok **tokens, t_tok *prev, t_tok *next,
 		new = new_word_tok(parts[i]);
 		if (!new)
 			break ;
-		new->prev = prev;
-		new->next = NULL;
-		if (prev)
-			prev->next = new;
-		else
-			*tokens = new;
-		prev = new;
-		last = new;
+		link_tok(tokens, &prev, &last, new);
 		i++;
 	}
 	if (last)
@@ -96,7 +88,8 @@ t_tok	*handle_expand(t_tok **tokens, t_tok *current, t_tok *next, char *exp)
 {
 	char	**parts;
 
-	if (!has_quotes(current->value) && ft_strchr(exp, ' '))
+	if (!has_quotes(current->value) && ft_strchr(exp, ' ')
+		&& !ft_strchr(current->value, '='))
 	{
 		parts = ft_split(exp, ' ');
 		free(exp);

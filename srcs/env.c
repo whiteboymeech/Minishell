@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d43.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2027/03/30 02:30:06 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 19:01:00 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 23:23:35 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -52,7 +52,7 @@ t_env	*make_env_node(char *key, char *value)
 	if (!new)
 		return (NULL);
 	new->key = ft_strdup(key);
-	if(value)
+	if (value)
 		new->value = ft_strdup(value);
 	else
 		new->value = NULL;
@@ -103,10 +103,11 @@ int	env(t_minish *shell, t_tok *tokens)
 	curr = shell->env;
 	while (curr)
 	{
-		if (curr->value != NULL) {
+		if (curr->value != NULL)
+		{
 			ft_putstr_fd(curr->key, tokens->fd_out);
 			ft_putstr_fd("=", tokens->fd_out);
-			if(curr->value)
+			if (curr->value)
 				ft_putendl_fd(curr->value, tokens->fd_out);
 			else
 				write(1, "\n", 1);

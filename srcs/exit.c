@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 16:03:01 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 18:45:48 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 23:24:20 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -83,9 +83,7 @@ void	verify_args(t_tok *arg, t_minish *shell)
 {
 	if (!arg || arg->type == TOKEN_EOF)
 	{
-		free_lexed(shell->tokens);
-		free_env(shell->env);
-		rl_clear_history();
+		make_dissapear(shell);
 		exit(shell->exit);
 	}
 	if (!is_numeric(arg->value) || is_out_of_range(arg->value))
@@ -93,8 +91,7 @@ void	verify_args(t_tok *arg, t_minish *shell)
 		ft_putstr_fd("minishell: exit: ", 2);
 		ft_putstr_fd(arg->value, 2);
 		ft_putendl_fd(": numeric argument required", 2);
-		free_env(shell->env);
-		rl_clear_history();
+		make_dissapear(shell);
 		exit(2);
 	}
 }
@@ -113,8 +110,6 @@ int	ft_exit(t_tok *tokens, t_minish *shell)
 		return (1);
 	}
 	code = ft_atol(arg->value);
-	free_lexed(shell->tokens);
-	free_env(shell->env);
-	rl_clear_history();
+	make_dissapear(shell);
 	exit((unsigned char)code);
 }

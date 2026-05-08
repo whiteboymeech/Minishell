@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 15:42:49 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/07 18:32:41 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 00:58:36 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -66,11 +66,10 @@ int	put_in_list(char *ret, int i, t_tok **tokens, int start)
 	return (1);
 }
 
-int	add_word(char *ret, int i, t_tok **tokens, int start)
+static int	scan_word(char *ret, int i)
 {
 	char	quote;
 
-	start = i;
 	while (ret[i] && !is_sep(ret[i]))
 	{
 		if (ret[i] == '\'' || ret[i] == '\"')
@@ -79,15 +78,24 @@ int	add_word(char *ret, int i, t_tok **tokens, int start)
 			while (ret[i] && ret[i] != quote)
 				i++;
 			if (!ret[i])
-			{
-				ft_putendl_fd("minishell: syntax error: unclosed quote", 2);
-				free_tokens(tokens);
-				return (0);
-			}
+				return (-1);
 			i++;
 		}
 		else
 			i++;
+	}
+	return (i);
+}
+
+int	add_word(char *ret, int i, t_tok **tokens, int start)
+{
+	start = i;
+	i = scan_word(ret, i);
+	if (i == -1)
+	{
+		ft_putendl_fd("minishell: syntax error: unclosed quote", 2);
+		free_tokens(tokens);
+		return (0);
 	}
 	if (put_in_list(ret, i, tokens, start) == 0)
 	{

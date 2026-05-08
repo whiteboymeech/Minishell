@@ -6,10 +6,23 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 19:02:56 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 18:43:02 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 23:24:58 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
+
+void	make_dissapear(t_minish *shell)
+{
+	if (shell->tokens)
+		free_lexed(shell->tokens);
+	if (shell->env)
+		free_env(shell->env);
+	if (shell->paths)
+		free_argv(shell->paths);
+	if (shell->envp)
+		free_argv(shell->envp);
+	rl_clear_history();
+}
 
 void	free_lexed(t_tok *lex)
 {

@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 00:00:00 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 02:22:54 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 23:32:23 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -16,10 +16,13 @@ int	g_sig = 0;
 static void	sigint_handler(int sig)
 {
 	g_sig = sig;
-	write(1, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
+	if (sig == SIGINT)
+	{
+		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
 
 void	run_signal(void)
