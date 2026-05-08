@@ -6,10 +6,9 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:34:14 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:34:16 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/07 18:23:27 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minishell.h"
 
 void	open_pipes(t_tok *lexed)

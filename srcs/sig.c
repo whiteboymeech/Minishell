@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt_ascii_art.c                                 :+:      :+:    :+:   */
+/*   sig.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: adarolla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 01:49:07 by mabenois          #+#    #+#             */
-/*   Updated: 2026/05/04 20:10:38 by adarolla         ###   ########.fr       */
+/*   Created: 2026/05/02 00:00:00 by adarolla          #+#    #+#             */
+/*   Updated: 2026/05/06 02:22:54 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minishell.h"
-#include "../the_big_head_of_adarolla.h"
 
-void	print_ascii_art(void)
+int	g_sig = 0;
+
+static void	sigint_handler(int sig)
 {
-	ft_putstr_fd((char *)g_banner, 1);
+	g_sig = sig;
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+}
+
+void	run_signal(void)
+{
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
 }

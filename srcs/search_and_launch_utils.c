@@ -6,25 +6,10 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:00:41 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:19:12 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 19:04:38 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
-
-void	free_argv(char **argv)
-{
-	int	i;
-
-	if (!argv)
-		return ;
-	i = 0;
-	while (argv[i])
-	{
-		free(argv[i]);
-		i++;
-	}
-	free(argv);
-}
 
 int	is_redir_target(t_tok *tok)
 {

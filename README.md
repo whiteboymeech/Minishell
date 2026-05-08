@@ -1,160 +1,161 @@
-*This project has been created as part of the 42 curriculum by mabenois, adarolla*
+*This project has been created as part of the 42 curriculum by [adarolla aka JEAN MOULIN] [mabenois aka DE GAULLE].*
 
-# 🐚 minishell
+# Minishell
 
-> *"Jean Moulin & De Gaulle 2000"*
+## Description
 
-Un shell UNIX minimaliste réalisé dans le cadre du cursus **42**, par [**mabenois**](https://github.com/mabenois) et [**adarolla**](https://github.com/adarolla).
+Minishell is a simplified reimplementation of a Unix shell. The goal of this project is to understand how shells work internally by recreating key features such as command parsing, process creation, piping, and redirection.
 
----
+This project focuses on:
 
-## 📋 Description
+* Parsing user input into tokens
+* Executing built-in and external commands
+* Managing processes using `fork`, `execve`, and `wait`
+* Handling pipes and file redirections
+* Managing environment variables
+* Handling signals (e.g., `Ctrl+C`, `Ctrl+D`, `Ctrl+\`)
 
-`minishell` est une implémentation simplifiée d'un shell UNIX inspiré de **bash**. Le projet couvre l'ensemble du cycle de vie d'une commande : lecture du prompt, lexing, parsing, expansion des variables, gestion des redirections, des pipes, des heredocs, et l'exécution des builtins ou des binaires externes.
-
----
-
-## ✨ Fonctionnalités
-
-### Builtins implémentés
-| Commande | Description |
-|----------|-------------|
-| `echo` | Affiche du texte, supporte le flag `-n` |
-| `cd` | Change le répertoire courant |
-| `pwd` | Affiche le répertoire courant |
-| `export` | Déclare ou modifie une variable d'environnement |
-| `unset` | Supprime une variable d'environnement |
-| `env` | Affiche l'environnement courant |
-| `exit` | Quitte le shell avec un code de retour |
-
-### Fonctionnalités du shell
-- **Prompt dynamique** affichant le répertoire courant
-- **Historique** des commandes (flèches haut/bas via `readline`)
-- **Pipes** `|` — chaînage de commandes
-- **Redirections** `<`, `>`, `>>` — entrée/sortie
-- **Heredoc** `<<` — entrée multiligne jusqu'au délimiteur
-- **Expansion** des variables `$VAR` et `$?`
-- **Gestion des signaux** `Ctrl+C`, `Ctrl+D`, `Ctrl+\`
-- **Mode non-interactif** — lit depuis stdin si non-TTY
-- **Validation syntaxique** — détecte les pipes/redirections mal formés
+Through this project, we explore low-level system programming concepts in C, especially how the operating system interacts with processes and file descriptors.
 
 ---
 
-## 🏗️ Architecture
+## Features
 
-```
-minishell/
-├── srcs/
-│   ├── main.c               # Point d'entrée
-│   ├── loop.c               # Boucle principale + lecture du prompt
-│   ├── parse.c              # Collecte des actions par segment
-│   ├── actions.c            # Structure t_action
-│   ├── search_and_launch.c  # Recherche et exécution des binaires
-│   └── get_paths.c          # Résolution du PATH
-├── lexer/
-│   ├── lexer.c              # Tokenisation de la ligne
-│   └── lexer_utils.c        # Utilitaires lexer
-├── build/                   # Builtins (echo, cd, pwd, env, export, unset, exit, run)
-├── expand/
-│   └── expand_tokens.c      # Expansion des variables
-├── redir/
-│   └── redir.c              # Ouverture/application des redirections
-├── pipes/
-│   └── pipes.c              # Création et application des pipes
-├── heredoc/
-│   └── heredoc.c            # Gestion du heredoc
-├── signal/
-│   └── sig.c                # Gestion des signaux
-├── prompt/
-│   └── prompt_ascii_art.c   # ASCII art au lancement
-├── libft/                   # Bibliothèque personnelle
-└── minishell.h              # Header principal
-```
+* Execution of basic commands (e.g., `ls`, `echo`, `pwd`)
+* Built-in commands:
+
+  * `cd`
+  * `echo`
+  * `pwd`
+  * `export`
+  * `unset`
+  * `env`
+  * `exit`
+* Pipes (`|`)
+* Input/output redirections (`<`, `>`, `>>`)
+* Environment variable expansion (`$VAR`)
+* Signal handling similar to Bash behavior
+* Error management and exit status handling
 
 ---
 
-## 🚀 Compilation & utilisation
+## Instructions
 
-### Prérequis
+### Compilation
 
-- `gcc` ou `cc`
-- `readline` (`libreadline-dev` sur Debian/Ubuntu)
-- `make`
-
-### Compiler
+Clone the repository and compile using `make`:
 
 ```bash
+git clone <your-repo-url>
+cd minishell
 make
 ```
 
-### Lancer
+Available rules:
+
+```bash
+make        # compile the project
+make clean  # remove object files
+make fclean # remove object files and binary
+make re     # recompile everything
+```
+
+### Execution
+
+Run the shell with:
 
 ```bash
 ./minishell
 ```
 
-### Nettoyage
+You will then be able to type commands as in a standard shell.
+
+### Example Usage
 
 ```bash
-make clean    # supprime les .o
-make fclean   # supprime les .o et le binaire
-make re       # recompile from scratch
+minishell$ echo Hello World
+Hello World
+
+minishell$ ls | grep .c
+main.c
+parser.c
+
+minishell$ cat < infile.txt > outfile.txt
 ```
 
 ---
 
-## 💡 Exemples d'utilisation
+## Technical Choices
 
-```bash
-# Pipe simple
-ls -la | grep ".c"
+* Written in C using only authorized functions
+* Use of linked lists for token and environment management
+* Modular architecture:
 
-# Redirection
-echo "hello" > fichier.txt
-cat < fichier.txt
-
-# Append
-echo "world" >> fichier.txt
-
-# Heredoc
-cat << EOF
-ligne 1
-ligne 2
-EOF
-
-# Variables d'environnement
-export MON_VAR=42
-echo $MON_VAR
-
-# Code de retour
-ls fichier_inexistant
-echo $?
-```
+  * Lexer (tokenization)
+  * Parser (structure creation)
+  * Executor (command execution)
+* File descriptor duplication with `dup2` for redirections and pipes
+* Careful memory management to avoid leaks
 
 ---
 
-## ⚙️ Fonctionnement interne
+## Challenges Faced
 
-```
-readline()
-    │
-    ▼
-lexer()          → liste de t_tok (TOKEN_WORD, TOKEN_PIPE, TOKEN_REDIR_*, ...)
-    │
-    ▼
-validate_syntax() → vérifie la cohérence des tokens
-    │
-    ▼
-expand_tokens()  → substitue $VAR et $?
-    │
-    ▼
-parse_pipeline() → ouvre les pipes/redirections, fork, execve
-```
+* Correctly parsing complex command inputs
+* Handling multiple pipes and redirections simultaneously
+* Managing signals without breaking interactive behavior
+* Avoiding memory leaks, especially with dynamic structures
+* Reproducing Bash-like behavior accurately
 
 ---
 
-## 📚 Projet
+## Resources
 
-Réalisé à **42** dans le cadre du projet `minishell` — niveau 3 du tronc commun.
+### Documentation & References
 
-> *Ce projet nous a appris à ne plus jamais sous-estimer un shell.*
+* The Linux Programming Interface — Michael Kerrisk
+* Advanced Programming in the UNIX Environment — W. Richard Stevens
+* Bash manual:
+  https://www.gnu.org/software/bash/manual/
+* man pages:
+
+  ```bash
+  man fork
+  man execve
+  man pipe
+  man dup2
+  man wait
+  ```
+
+### Tutorials
+
+* Process and pipes in C:
+  https://www.geeksforgeeks.org/pipe-system-call/
+* Shell implementation basics:
+  https://brennan.io/2015/01/16/write-a-shell-in-c/
+
+### AI Usage
+
+AI tools were used during this project for:
+
+* Understanding complex concepts (process management, parsing strategies)
+* Debugging specific issues (segmentation faults, memory leaks)
+* Clarifying behavior of system calls and edge cases
+* Structuring the project and improving code readability
+
+All code was written and validated manually. AI was used as a learning assistant, not as a code generator.
+
+---
+
+## Author(s)
+
+* Adam Rolland-Ternoi
+* Manech Benoist Valin 
+*
+
+---
+
+## Notes
+
+This project is a pedagogical implementation and does not aim to fully replicate Bash. Some advanced features (such as job control or wildcards) may not be implemented.
+

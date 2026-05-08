@@ -19,31 +19,32 @@ SRCS		= srcs/actions.c \
 			  srcs/search_and_launch.c \
 			  srcs/search_and_launch_utils.c \
 			  srcs/valid_syntax.c \
-			  lexer/lexer.c \
-			  lexer/lexer_utils.c \
-			  lexer/lexer_more_utils.c \
-			  build/pwd.c \
-			  build/echo.c \
-			  build/run.c \
-			  build/env.c \
-			  build/env_utils.c \
-			  build/exit.c \
-			  build/export.c \
-			  build/unset.c \
-			  build/cd.c \
-			  build/cd_utils.c \
-			  build/env_more_utils.c \
-			  build/export_utils.c \
-			  redir/redir.c \
-			  redir/redir_utils.c \
-			  pipes/pipes.c \
-			  heredoc/heredoc.c \
-			  heredoc/heredoc_utils.c \
-			  expand/expand_tokens.c \
-			  expand/expand_utils.c \
-			  expand/expand_more_utils.c \
-			  prompt/prompt_ascii_art.c \
-			  signal/sig.c 
+			  srcs/lexer.c \
+			  srcs/lexer_utils.c \
+			  srcs/lexer_more_utils.c \
+			  srcs/pwd.c \
+			  srcs/echo.c \
+			  srcs/run.c \
+			  srcs/env.c \
+			  srcs/env_utils.c \
+			  srcs/exit.c \
+			  srcs/export.c \
+			  srcs/unset.c \
+			  srcs/cd.c \
+			  srcs/cd_utils.c \
+			  srcs/env_more_utils.c \
+			  srcs/export_utils.c \
+			  srcs/redir.c \
+			  srcs/redir_utils.c \
+			  srcs/pipes.c \
+			  srcs/heredoc.c \
+			  srcs/heredoc_utils.c \
+			  srcs/expand_tokens.c \
+			  srcs/expand_utils.c \
+			  srcs/expand_more_utils.c \
+			  srcs/expand_more_more_utils.c \
+			  srcs/free.c \
+			  srcs/sig.c 
 
 
 

@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 16:03:01 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 18:04:31 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 21:43:45 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -79,6 +79,27 @@ static int	is_numeric(const char *str)
 	return (1);
 }
 
+void	verify_args(t_tok *arg, t_minish *shell)
+{
+	if (!arg || arg->type == TOKEN_EOF)
+	{
+		free_lexed(shell->tokens);
+		free_env(shell->env);
+
+		rl_clear_history();
+		exit(shell->exit);
+	}
+	if (!is_numeric(arg->value) || is_out_of_range(arg->value))
+	{
+		ft_putstr_fd("minishell: exit: ", 2);
+		ft_putstr_fd(arg->value, 2);
+		ft_putendl_fd(": numeric argument required", 2);
+		free_env(shell->env);
+		rl_clear_history();
+		exit(2);
+	}
+}
+
 int	ft_exit(t_tok *tokens, t_minish *shell)
 {
 	t_tok	*arg;
@@ -86,20 +107,15 @@ int	ft_exit(t_tok *tokens, t_minish *shell)
 
 	code = 0;
 	arg = tokens->next;
-	if (!arg || arg->type == TOKEN_EOF)
-		exit(shell->exit);
-	if (!is_numeric(arg->value) || is_out_of_range(arg->value))
-	{
-		ft_putstr_fd("minishell: exit: ", 2);
-		ft_putstr_fd(arg->value, 2);
-		ft_putendl_fd(": numeric argument required", 2);
-		exit(2);
-	}
+	verify_args(arg, shell);
 	if (arg->next && arg->next->type == TOKEN_WORD)
 	{
 		ft_putendl_fd("minishell: exit: too many arguments", 2);
 		return (1);
 	}
 	code = ft_atol(arg->value);
+	free_lexed(shell->tokens);
+	free_env(shell->env);
+	rl_clear_history();
 	exit((unsigned char)code);
 }

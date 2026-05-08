@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:08:37 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 17:00:28 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 00:03:37 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -59,6 +59,7 @@ int	export_one(t_minish *ev, char *arg)
 {
 	char	*eq;
 	char	*key;
+	char	*exist;
 	int		append;
 	int		ret;
 
@@ -72,6 +73,9 @@ int	export_one(t_minish *ev, char *arg)
 	}
 	if (!eq)
 	{
+		exist = get_env_value(ev->env, key);
+		if (!exist)
+			add_env(&ev->env, key, NULL);
 		free(key);
 		return (0);
 	}
@@ -87,7 +91,7 @@ int	export(t_minish *ev, t_tok *tokens)
 
 	if (!tokens || !tokens->next || tokens->next->type == TOKEN_EOF)
 	{
-		print_env(ev->env, tokens->fd_out);
+		print_env(ev->env);
 		return (0);
 	}
 	ret = 0;

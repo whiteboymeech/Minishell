@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 22:40:28 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/05 17:48:59 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -29,7 +29,6 @@ static char	*build_prompt(void)
 	return (prompt);
 }
 
-/*
 static int	read_chars(char *buf)
 {
 	int		i;
@@ -70,24 +69,26 @@ static int	read_non_interactive(char **ret)
 		return (-1);
 	return (0);
 }
-*/
 
 int	ft_read_prompt(char **ret)
 {
 	char	*prompt;
 
-	//if (!isatty(STDIN_FILENO))
-//		return (read_non_interactive(ret));
+	if (!isatty(STDIN_FILENO))
+		return (read_non_interactive(ret));
 	prompt = build_prompt();
 	*ret = readline(prompt);
 	free(prompt);
-	if (*ret == NULL)
+	if (!(*ret))
 	{
-		printf("exit\n");
-		*ret = ft_strdup("exit");
-		if (!(*ret))
-			return (1);
-		return (0);
+		if (g_sig != SIGINT)
+		{
+			write(2, "exit\n", 5);
+			g_sig = -1;
+			return (0);
+		}
+		g_sig = -1;
+		return (1);
 	}
 	return (0);
 }

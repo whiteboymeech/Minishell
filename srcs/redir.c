@@ -6,10 +6,9 @@
 /*   By: mabenois <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 04:55:23 by mabenois          #+#    #+#             */
-/*   Updated: 2026/05/04 18:24:52 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/07 22:48:33 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minishell.h"
 
 static int	open_single_redir(t_tok *curr)
@@ -20,11 +19,11 @@ static int	open_single_redir(t_tok *curr)
 		return (1);
 	}
 	if (curr->type == TOKEN_REDIR_OUT)
-		curr->fd_out = open(curr->next->value,
-				O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IWUSR);
+		curr->fd_out = open(curr->next->value, O_WRONLY | O_TRUNC | O_CREAT,
+				S_IRUSR | S_IWUSR);
 	else if (curr->type == TOKEN_APPEND)
-		curr->fd_out = open(curr->next->value,
-				O_WRONLY | O_APPEND | O_CREAT, S_IRUSR | S_IWUSR);
+		curr->fd_out = open(curr->next->value, O_WRONLY | O_APPEND | O_CREAT,
+				S_IRUSR | S_IWUSR);
 	else if (curr->type == TOKEN_REDIR_IN)
 		curr->fd_in = open(curr->next->value, O_RDONLY);
 	if ((curr->type == TOKEN_REDIR_OUT || curr->type == TOKEN_APPEND)

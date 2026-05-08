@@ -6,10 +6,9 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 17:11:39 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 14:45:40 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/07 19:54:12 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minishell.h"
 
 int	run(t_tok *tokens, t_minish *shell)

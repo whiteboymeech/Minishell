@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 02:16:49 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:15:30 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 18:34:54 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -39,7 +39,7 @@ static int	is_redir_tok(t_tok *tok)
 		|| tok->prev->type == TOKEN_HEREDOC);
 }
 
-static void	update_token_value(t_tok *current, char *exp)
+void	update_token_value(t_tok *current, char *exp)
 {
 	free(current->value);
 	current->value = exp;
@@ -58,7 +58,7 @@ void	expand_tokens(t_tok **tokens, t_minish *shell)
 		if (current->type == TOKEN_WORD)
 		{
 			exp = expand(current->value, shell);
-			if ((exp == NULL || exp[0] == '\0') && current->value[0] != '\''
+			if ((!exp || !exp[0]) && current->value[0] != '\''
 				&& current->value[0] != '"' && !is_redir_tok(current))
 			{
 				free(exp);
@@ -66,7 +66,7 @@ void	expand_tokens(t_tok **tokens, t_minish *shell)
 				continue ;
 			}
 			if (exp)
-				update_token_value(current, exp);
+				next = handle_expand(tokens, current, next, exp);
 		}
 		current = next;
 	}

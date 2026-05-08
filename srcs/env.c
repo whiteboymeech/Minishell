@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d43.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2027/03/30 02:30:06 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 14:56:06 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 00:00:45 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -30,9 +30,7 @@ t_env	*build_env(char **envp)
 	t_env	*tail;
 	int		i;
 
-	if (!envp || !*envp)
-		return (NULL);
-	env = NULL;
+	env = (t_env *){0};
 	tail = NULL;
 	i = 0;
 	while (envp[i])
@@ -50,13 +48,16 @@ t_env	*make_env_node(char *key, char *value)
 {
 	t_env	*new;
 
-	new = malloc(sizeof(t_env));
+	new = ft_calloc(1, sizeof(t_env));
 	if (!new)
 		return (NULL);
 	new->key = ft_strdup(key);
-	new->value = ft_strdup(value);
+	if(value)
+		new->value = ft_strdup(value);
+	else
+		new->value = NULL;
 	new->next = NULL;
-	if (!new->key || !new->value)
+	if (!new->key || (value && !new->value))
 	{
 		free(new->key);
 		free(new->value);
@@ -75,7 +76,10 @@ void	add_env(t_env **env, char *key, char *value)
 	if (node)
 	{
 		free(node->value);
-		node->value = ft_strdup(value);
+		if (value)
+			node->value = ft_strdup(value);
+		else
+			node->value = NULL;
 		return ;
 	}
 	new = make_env_node(key, value);
@@ -99,9 +103,14 @@ int	env(t_minish *shell, t_tok *tokens)
 	curr = shell->env;
 	while (curr)
 	{
-		ft_putstr_fd(curr->key, tokens->fd_out);
-		ft_putstr_fd("=", tokens->fd_out);
-		ft_putendl_fd(curr->value, tokens->fd_out);
+		if (curr->value != NULL) {
+			ft_putstr_fd(curr->key, 1);
+			ft_putstr_fd("=", 1);
+			if(curr->value)
+				ft_putendl_fd(curr->value, 1);
+			else
+				write(1, "\n", 1);
+		}
 		curr = curr->next;
 	}
 	return (0);

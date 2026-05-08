@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_more_utils.c                                   :+:      :+:    :+:   */
+/*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/04 14:36:37 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 14:55:29 by adarolla         ###   ########.fr       */
+/*   Created: 2026/05/04 14:28:14 by adarolla          #+#    #+#             */
+/*   Updated: 2026/05/06 02:20:48 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
-t_env	*find_env(t_env *env, char *key)
+char	*get_env_value(t_env *env, char *key)
 {
 	while (env)
 	{
 		if (!ft_strcmp(env->key, key))
-			return (env);
+			return (env->value);
 		env = env->next;
 	}
 	return (NULL);
 }
 
-void	print_env(t_env *env, int fd_out)
+char	*get_env_val_alloc(t_env *env, char *key)
 {
-	while (env)
-	{
-		ft_putstr_fd("declare -x ", fd_out);
-		ft_putstr_fd(env->key, fd_out);
-		if (env->value)
-		{
-			ft_putstr_fd("=\"", fd_out);
-			ft_putstr_fd(env->value, fd_out);
-			ft_putstr_fd("\"", fd_out);
-		}
-		write(fd_out, "\n", 1);
-		env = env->next;
-	}
+	char	*value;
+	char	*ret;
+
+	value = get_env_value(env, key);
+	if (!value)
+		return (NULL);
+	ret = ft_strdup(value);
+	if (!ret)
+		return (NULL);
+	return (ret);
 }

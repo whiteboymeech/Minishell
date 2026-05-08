@@ -6,10 +6,9 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:39:13 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 18:05:13 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 02:23:02 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minishell.h"
 
 void	env_unset(t_env **env, char *key)

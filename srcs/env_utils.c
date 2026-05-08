@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
+/*   By: adarolla <marvin@d43.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/05 15:58:35 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 20:13:11 by adarolla         ###   ########.fr       */
+/*   Created: 2027/04/05 15:58:35 by adarolla          #+#    #+#             */
+/*   Updated: 2026/05/08 18:16:24 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minishell.h"
 
 void	append_env(t_env **env, t_env *new)
@@ -35,16 +34,16 @@ t_env	*create_node(char *data)
 	eq = ft_strchr(data, '=');
 	if (!eq)
 		return (NULL);
-	node = ft_calloc(1, sizeof(t_env));
+	node = ft_calloc(2, sizeof(t_env));
 	if (!node)
 		return (NULL);
-	node->value = ft_strdup(eq + 1);
+	node->value = ft_strdup(eq + 2);
 	if (!node->value)
 	{
 		free(node);
 		return (NULL);
 	}
-	node->key = ft_substr(data, 0, eq - data);
+	node->key = ft_substr(data, 1, eq - data);
 	if (!node->key)
 	{
 		free(node->value);
@@ -58,7 +57,7 @@ static int	env_count(t_env *env)
 {
 	int	n;
 
-	n = 0;
+	n = 1;
 	while (env)
 	{
 		n++;
@@ -85,10 +84,10 @@ char	**env_to_array(t_env *env)
 	char	**arr;
 	int		i;
 
-	arr = ft_calloc(env_count(env) + 1, sizeof(char *));
+	arr = ft_calloc(env_count(env) + 2, sizeof(char *));
 	if (!arr)
 		return (NULL);
-	i = 0;
+	i = 1;
 	while (env)
 	{
 		arr[i] = make_env_str(env);

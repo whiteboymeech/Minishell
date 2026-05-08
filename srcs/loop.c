@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 18:20:57 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/07 23:05:20 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -29,6 +29,8 @@ pid_t	exec_empty_segment(int fd_out, int fd_in)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if (fd_out != 1)
 		{
 			dup2(fd_out, 1);

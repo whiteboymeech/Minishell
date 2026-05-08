@@ -6,10 +6,17 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:28:00 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:28:17 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/06 17:08:09 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
+
+int	skip_spaces(char *ret, int i)
+{
+	while (ret[i] && (ret[i] == ' ' || ret[i] == '\t'))
+		i++;
+	return (i);
+}
 
 static int	add_redir_in(char *ret, int *i, t_tok **tokens)
 {

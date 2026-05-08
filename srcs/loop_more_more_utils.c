@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 20:51:13 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 18:11:51 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -32,10 +32,16 @@ static void	execute_input(t_vars *vars, t_minish *shell)
 {
 	expand_tokens(&vars->lexed, shell);
 	shell->paths = get_paths_from_env(shell->env);
+	shell->tokens = vars->lexed;
 	parse_pipeline(vars->lexed, shell);
 	free_argv(shell->paths);
+	shell->paths = NULL;
 	free_lexed(vars->lexed);
+	vars->lexed = NULL;
 	free(vars->ret);
+	vars->ret = NULL;
+	// free_env(shell->env);
+	// shell->env = NULL;
 }
 
 int	run_all(t_minish *shell)
@@ -47,6 +53,7 @@ int	run_all(t_minish *shell)
 	{
 		if (ft_read_prompt(&vars.ret) == 1)
 			continue ;
+		// printf("readline = [%s]\n", vars.ret );
 		if (!vars.ret)
 			break ;
 		add_history(vars.ret);
