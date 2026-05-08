@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 19:02:56 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 18:06:22 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 18:43:02 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -82,14 +82,9 @@ void	free_env(t_env *env)
 	while (env)
 	{
 		next = env->next;
-		// printf("key= [%s]\n | val= [%s]\n", env->key, env->value);
 		free(env->key);
-		// env->key = NULL;
 		free(env->value);
-		// env->value = NULL;
-		// printf("after_key= [%s]\n | after_val= [%s]\n", env->key, env->value);
 		free(env);
-		// env = NULL;
 		env = next;
 	}
 }

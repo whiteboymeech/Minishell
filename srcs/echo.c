@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 14:51:51 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 00:01:47 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 19:00:32 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -37,9 +37,9 @@ int	echo(t_tok *tokens)
 	}
 	while (tok && tok->type == TOKEN_WORD)
 	{
-		ft_putstr_fd(tok->value, 1);
+		ft_putstr_fd(tok->value, tok->fd_out);
 		if (tok->next && tok->next->type == TOKEN_WORD)
-			write(1, " ", 1);
+			write(tok->fd_out, " ", 1);
 		tok = tok->next;
 	}
 	if (flag)

@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 16:03:01 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 21:43:45 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 18:45:48 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -85,7 +85,6 @@ void	verify_args(t_tok *arg, t_minish *shell)
 	{
 		free_lexed(shell->tokens);
 		free_env(shell->env);
-
 		rl_clear_history();
 		exit(shell->exit);
 	}

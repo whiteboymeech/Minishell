@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:30:11 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 18:18:37 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 19:11:26 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -65,10 +65,13 @@ pid_t	fork_build(t_tok *curr, t_minish *shell, t_exec_ctx *ctx)
 	{
 		setup_fds(ctx);
 		close_pipe_fds(ctx->tokens, ctx->fd_in, ctx->fd_out);
+		curr->fd_out = 1;
+		curr->fd_in = 0;
 		result = run(curr, shell);
 		free_tokens(&shell->tokens);
 		free_argv(shell->envp);
 		free_argv(shell->paths);
+		free_env(shell->env);
 		exit(result);
 	}
 	return (pid);

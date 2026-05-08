@@ -6,14 +6,13 @@
 /*   By: mabenois <marvin@43.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 23:31:15 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/07 23:41:12 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/08 19:21:45 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
 void	setup_fds(t_exec_ctx *ctx)
 {
-	printf("in = %d out = %d\n", ctx->fd_in, ctx->fd_out);
 	if (ctx->fd_in == -1 || ctx->fd_out == -1)
 		exit(1);
 	if (ctx->fd_out != 1)
@@ -55,8 +54,9 @@ pid_t	ft_exec_if_found(t_tok *lex, char **paths, t_exec_ctx *ctx)
 
 	if (lex->type == TOKEN_EOF)
 		return (-1);
-path_exe = word_is_exe(lex->value, paths); if (!path_exe)
-{
+	path_exe = word_is_exe(lex->value, paths);
+	if (!path_exe)
+	{
 		ft_putstr_fd(lex->value, 2);
 		ft_putendl_fd(": command not found", 2);
 		return (-1);
@@ -69,7 +69,7 @@ path_exe = word_is_exe(lex->value, paths); if (!path_exe)
 	}
 	child_pid = fork();
 	if (child_pid == 0)
-			exec_child(lex, path_exe, exe_argv, ctx);
+		exec_child(lex, path_exe, exe_argv, ctx);
 	free(exe_argv);
 	free(path_exe);
 	return (child_pid);
