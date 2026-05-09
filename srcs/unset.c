@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:39:13 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 02:23:02 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 03:01:16 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -57,27 +57,12 @@ static int	is_valid_unset_id(const char *str)
 int	unset(t_tok *tokens, t_minish *shell)
 {
 	t_tok	*tok;
-	char	*eq;
-	char	*key;
 
 	tok = tokens->next;
 	while (tok && tok->type == TOKEN_WORD)
 	{
-		key = tok->value;
-		eq = ft_strchr(key, '=');
-		if (eq)
-			*eq = '\0';
-		if (!is_valid_unset_id(tok->value))
-		{
-			ft_putstr_fd("unset: `", 2);
-			ft_putstr_fd(tok->value, 2);
-			ft_putendl_fd("': not a valid identifier", 2);
-			return (0);
-		}
-		else
+		if (is_valid_unset_id(tok->value))
 			env_unset(&shell->env, tok->value);
-		if (eq)
-			*eq = '=';
 		tok = tok->next;
 	}
 	return (0);

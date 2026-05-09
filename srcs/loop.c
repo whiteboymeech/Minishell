@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 00:52:16 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 03:36:10 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -58,4 +58,3 @@ void	parse_pipeline(t_tok *lexed, t_minish *shell)
 	wait_children(last_pid, shell);
 	close_redir_fds(lexed);
 }
-

@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:18:59 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 01:00:19 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 03:36:02 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -24,6 +24,7 @@ int	has_quotes(char *value)
 	}
 	return (0);
 }
+
 void	normal_copy(char *value, char **res, char *buffer, int *i)
 {
 	char	*tmp;

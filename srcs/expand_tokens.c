@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 02:16:49 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 00:30:06 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 03:35:50 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -70,5 +70,4 @@ void	expand_tokens(t_tok **tokens, t_minish *shell)
 		}
 		current = next;
 	}
-	// print_lexer(*tokens);
 }

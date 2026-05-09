@@ -31,6 +31,7 @@ SRCS		= srcs/actions.c \
 			  srcs/export.c \
 			  srcs/unset.c \
 			  srcs/cd.c \
+			  srcs/close.c \
 			  srcs/cd_utils.c \
 			  srcs/env_more_utils.c \
 			  srcs/export_utils.c \

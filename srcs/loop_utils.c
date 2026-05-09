@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 00:00:41 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 02:56:55 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -24,7 +24,7 @@ static char	*build_prompt(void)
 	free(dir);
 	if (!tmp)
 		return (NULL);
-	prompt = ft_strjoin("\nJean Moulin & De Gaulle 2000:", tmp);
+	prompt = ft_strjoin("Jean Moulin & De Gaulle 200:", tmp);
 	free(tmp);
 	return (prompt);
 }
@@ -82,9 +82,6 @@ int	ft_read_prompt(char **ret)
 	if (!(*ret))
 	{
 		write(1, "exit\n", 5);
-		// *ret = ft_strdup("exit");
-		// if (!*ret)
-			// return (1);
 		return (0);
 	}
 	return (0);

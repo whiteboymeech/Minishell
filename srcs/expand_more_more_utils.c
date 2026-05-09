@@ -6,12 +6,11 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 18:29:39 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 01:01:34 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 03:39:38 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 static t_tok	*new_word_tok(char *value)
 {

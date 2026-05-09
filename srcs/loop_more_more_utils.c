@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 00:22:22 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 03:35:42 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -14,7 +14,6 @@
 static int	handle_input(t_vars *vars, t_minish *shell)
 {
 	vars->lexed = lexer(vars->ret);
-	// print_lexer(vars->lexed);
 	if (!vars->lexed)
 	{
 		free(vars->ret);
