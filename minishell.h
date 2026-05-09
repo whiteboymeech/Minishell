@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:54:02 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 01:01:56 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 23:51:43 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,29 @@ typedef struct s_tok
 	int				is_exe;
 	int				fd_in;
 	int				fd_out;
+	int				heredoc_quoted;
 	char			*value;
 	t_type			type;
 	t_pipe			pipe;
 	struct s_tok	*next;
 	struct s_tok	*prev;
 }					t_tok;
+
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}					t_env;
+
+typedef struct s_minish
+{
+	int				exit;
+	char			**envp;
+	char			**paths;
+	t_tok			*tokens;
+	t_env			*env;
+}					t_minish;
 
 typedef struct s_seg_fds
 {
@@ -86,15 +103,8 @@ typedef struct s_exec_ctx
 	int				fd_out;
 	int				fd_in;
 	t_tok			*tokens;
+	t_minish		*shell;
 }					t_exec_ctx;
-
-typedef struct s_env
-{
-	char			*key;
-	char			*value;
-	struct s_env	*next;
-}					t_env;
-
 typedef struct s_pipe_state
 {
 	t_tok			**pending;
@@ -111,14 +121,6 @@ typedef struct s_vars
 	t_tok			*lexed;
 }					t_vars;
 
-typedef struct s_minish
-{
-	int				exit;
-	char			**envp;
-	char			**paths;
-	t_tok			*tokens;
-	t_env			*env;
-}					t_minish;
 
 typedef struct s_action
 {
@@ -144,10 +146,10 @@ t_tok				*handle_expand(t_tok **tokens, t_tok *current, t_tok *next,
 t_env				*build_env(char **envp);
 t_env				*create_node(char *data);
 t_env				*find_env(t_env *env, char *key);
-pid_t				exec_empty_segment(int fd_out, int fd_in);
 pid_t				run_pipeline(t_tok *lexed, t_minish *shell, int piped);
 pid_t				exec_token(t_tok *curr, t_minish *shell, int piped);
 pid_t				ft_exec_if_found(t_tok *lex, char **paths, t_exec_ctx *ctx);
+pid_t				exec_empty_segment(int fd_out, int fd_in, t_minish *shell);
 void				add_env(t_env **env, char *key, char *value);
 void				free_env(t_env *env);
 void				print_env(t_env *env);
@@ -161,7 +163,7 @@ void				close_redir_fds(t_tok *lexed);
 void				open_pipes(t_tok *lexed);
 void				close_pipe_fds(t_tok *tokens, int keep_in, int keep_out);
 void				apply_pipes(t_tok *lexed);
-void				get_heredocs(t_tok *lexed);
+void				get_heredocs(t_tok *lexed, t_minish *shell);
 void				add_token_back(t_tok **tok, t_tok *new_element);
 void				free_tokens(t_tok **tokens);
 void				free_lexed(t_tok *lex);
@@ -188,6 +190,7 @@ char				*expand_dquote(char *value, int *i, t_minish *shell);
 char				*get_cd_path(t_tok *arg, t_minish *shell);
 char				*get_oldpwd(t_minish *shell);
 char				*expand(char *value, t_minish *shell);
+char				*expand_heredoc_line(char *line, t_minish *shell);
 char				**get_paths(char **envp);
 char				**get_paths_from_env(t_env *env);
 char				*word_is_exe(char *word, char **paths);

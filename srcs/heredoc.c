@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 02:16:49 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:26:39 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 23:35:18 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -41,9 +41,10 @@ static char	*read_heredoc_line_fd(void)
 	return (ft_strdup(buf));
 }
 
-static void	read_heredoc(t_tok *curr)
+static void	read_heredoc(t_tok *curr, t_minish *shell, int quoted)
 {
 	char	*line;
+	char	*exp;
 
 	while (1)
 	{
@@ -56,9 +57,16 @@ static void	read_heredoc(t_tok *curr)
 			free(line);
 			break ;
 		}
-		write(curr->pipe.p[1], line, ft_strlen(line));
-		write(curr->pipe.p[1], "\n", 1);
+		if (quoted)
+			exp = ft_strdup(line);
+		else
+			exp = expand_heredoc_line(line, shell);
 		free(line);
+		if (!exp)
+			break ;
+		write(curr->pipe.p[1], exp, ft_strlen(exp));
+		write(curr->pipe.p[1], "\n", 1);
+		free(exp);
 	}
 	close(curr->pipe.p[1]);
 }
@@ -70,7 +78,7 @@ static t_tok	*find_content_tok(t_tok *heredoc_tok)
 
 	if (!heredoc_tok->next)
 		return (NULL);
-	curr = heredoc_tok->next->next;
+	curr = heredoc_tok->next;
 	last_word = NULL;
 	while (curr && curr->type == TOKEN_WORD)
 	{
@@ -82,7 +90,7 @@ static t_tok	*find_content_tok(t_tok *heredoc_tok)
 	return (last_word);
 }
 
-void	get_heredocs(t_tok *lexed)
+void	get_heredocs(t_tok *lexed, t_minish *shell)
 {
 	t_tok	*curr;
 	t_tok	*content_tok;
@@ -100,7 +108,7 @@ void	get_heredocs(t_tok *lexed)
 				content_tok->type = TOKEN_ERROR;
 			}
 			else
-				read_heredoc(curr);
+				read_heredoc(curr, shell, curr->heredoc_quoted);
 		}
 		curr = curr->next;
 	}

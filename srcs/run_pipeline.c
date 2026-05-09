@@ -6,18 +6,18 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 17:27:02 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 20:10:08 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 19:38:15 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
-static void	handle_boundary(t_tok *curr, t_pipe_state *st)
+static void	handle_boundary(t_tok *curr, t_pipe_state *st, t_minish *shell)
 {
 	pid_t	pid;
 
 	if (!*st->has_exe && *st->pending)
 	{
-		pid = exec_empty_segment(st->fd_out, st->fd_in);
+		pid = exec_empty_segment(st->fd_out, st->fd_in, shell);
 		if (pid > 0)
 			*st->last = pid;
 	}
@@ -57,7 +57,7 @@ static void	process_tok(t_tok *curr, t_minish *shell, int piped,
 	}
 	if (curr->type == TOKEN_PIPE || curr->type == TOKEN_EOF)
 	{
-		handle_boundary(curr, st);
+		handle_boundary(curr, st, shell);
 		st->fd_out = 1;
 		st->fd_in = 0;
 	}

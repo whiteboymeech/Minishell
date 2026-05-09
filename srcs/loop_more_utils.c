@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:30:11 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 02:40:59 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 23:51:59 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -68,13 +68,11 @@ pid_t	fork_build(t_tok *curr, t_minish *shell, t_exec_ctx *ctx)
 		signal(SIGPIPE, SIG_DFL);
 		setup_fds(ctx);
 		close_pipe_fds(ctx->tokens, ctx->fd_in, ctx->fd_out);
+		close_redir_fds(ctx->tokens);
 		curr->fd_out = 1;
 		curr->fd_in = 0;
 		result = run(curr, shell);
-		free_tokens(&shell->tokens);
-		free_argv(shell->envp);
-		free_argv(shell->paths);
-		free_env(shell->env);
+		make_dissapear(shell);
 		exit(result);
 	}
 	return (pid);
@@ -95,7 +93,8 @@ pid_t	exec_token(t_tok *curr, t_minish *shell, int piped)
 		shell->exit = result;
 		return (-2);
 	}
-	ctx = (t_exec_ctx){shell->envp, curr->fd_out, curr->fd_in, shell->tokens};
+	ctx = (t_exec_ctx){shell->envp, curr->fd_out, curr->fd_in, shell->tokens,
+		shell};
 	if (piped && is_builtin(curr))
 		return (fork_build(curr, shell, &ctx));
 	pid = ft_exec_if_found(curr, shell->paths, &ctx);

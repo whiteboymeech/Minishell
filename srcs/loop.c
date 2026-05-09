@@ -6,12 +6,12 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 03:36:10 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 23:20:20 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
-pid_t	exec_empty_segment(int fd_out, int fd_in)
+pid_t	exec_empty_segment(int fd_out, int fd_in, t_minish *shell)
 {
 	pid_t	pid;
 
@@ -30,6 +30,9 @@ pid_t	exec_empty_segment(int fd_out, int fd_in)
 			dup2(fd_in, 0);
 			close(fd_in);
 		}
+		close_pipe_fds(shell->tokens, fd_in, fd_out);
+		close_redir_fds(shell->tokens);
+		make_dissapear(shell);
 		exit(0);
 	}
 	return (pid);
@@ -44,7 +47,7 @@ void	parse_pipeline(t_tok *lexed, t_minish *shell)
 	open_pipes(lexed);
 	apply_pipes(lexed);
 	apply_redir_fds(lexed);
-	get_heredocs(lexed);
+	get_heredocs(lexed, shell);
 	if (redir_err && !has_pipe(lexed))
 	{
 		shell->exit = 1;

@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:28:00 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/06 17:08:09 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 23:25:46 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -20,10 +20,21 @@ int	skip_spaces(char *ret, int i)
 
 static int	add_redir_in(char *ret, int *i, t_tok **tokens)
 {
+	t_tok	*node;
+	int		j;
+
 	if (ret[*i + 1] == '<')
 	{
-		add_token_back(tokens, new_node(TOKEN_HEREDOC, "<<"));
+		node = new_node(TOKEN_HEREDOC, "<<");
 		(*i) += 2;
+		j = *i;
+		while (ret[j] == ' ' || ret[j] == '\t')
+			j++;
+		if (ret[j] == '\'' || ret[j] == '"')
+			node->heredoc_quoted = 1;
+		else
+			node->heredoc_quoted = 0;
+		add_token_back(tokens, node);
 		return (1);
 	}
 	add_token_back(tokens, new_node(TOKEN_REDIR_IN, "<"));

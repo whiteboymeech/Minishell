@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@43.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 23:31:15 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 19:21:45 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/10 00:05:15 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -29,20 +29,37 @@ void	setup_fds(t_exec_ctx *ctx)
 
 static void	exec_child(t_tok *lex, char *path, char **argv, t_exec_ctx *ctx)
 {
+	struct stat	st;
+	int			err;
+
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGPIPE, SIG_DFL);
 	setup_fds(ctx);
 	close_pipe_fds(ctx->tokens, ctx->fd_in, ctx->fd_out);
+	close_redir_fds(ctx->tokens);
 	execve(path, argv, ctx->envp);
-	if (errno == EACCES)
+	err = errno;
+	if (err == EACCES && stat(path, &st) == 0 && S_ISDIR(st.st_mode))
+	{
+		ft_putstr_fd(path, 2);
+		ft_putendl_fd(": Is a directory", 2);
+	}
+	else if (err == EACCES)
 	{
 		ft_putstr_fd(path, 2);
 		ft_putendl_fd(": Permission denied", 2);
-		exit(126);
 	}
-	ft_putstr_fd(lex->value, 2);
-	ft_putendl_fd(": execve failed", 2);
+	else
+	{
+		ft_putstr_fd(lex->value, 2);
+		ft_putendl_fd(": execve failed", 2);
+	}
+	free(path);
+	free(argv);
+	make_dissapear(ctx->shell);
+	if (err == EACCES)
+		exit(126);
 	exit(127);
 }
 

@@ -6,10 +6,32 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:08:58 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:18:23 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/09 23:34:07 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
+
+char	*expand_heredoc_line(char *line, t_minish *shell)
+{
+	char	*res;
+	char	buffer[2];
+	int		i;
+
+	res = ft_strdup("");
+	buffer[1] = '\0';
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '$')
+			append_piece(&res, dollar(line, &i, shell));
+		else
+		{
+			buffer[0] = line[i++];
+			append_piece(&res, ft_strdup(buffer));
+		}
+	}
+	return (res);
+}
 
 static int	write_segment(t_heredoc_ctx *ctx, char *pos, char *end)
 {

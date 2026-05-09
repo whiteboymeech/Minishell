@@ -3,7 +3,6 @@ NAME		= minishell
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
-
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g
 INCLUDES	= -I./includes -I./$(LIBFT_DIR)
@@ -45,29 +44,18 @@ SRCS		= srcs/actions.c \
 			  srcs/expand_more_utils.c \
 			  srcs/expand_more_more_utils.c \
 			  srcs/free.c \
-			  srcs/sig.c 
-
-
+			  srcs/sig.c
 
 OBJS		= $(SRCS:.c=.o)
 
 RESET		= \033[0m
 BOLD		= \033[1m
 GREEN		= \033[32m
-CYAN		= \033[36m
 YELLOW		= \033[33m
-MAGENTA		= \033[35m
-BLUE		= \033[34m
-
-SPINNER		= ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏
-
-
 
 .SILENT:
 
-all: _header $(LIBFT) $(OBJS) _link _footer
-
-
+all: _header $(LIBFT) $(NAME) _footer
 
 $(LIBFT):
 	printf "$(YELLOW)  ➤  Building libft...$(RESET)\n"
@@ -77,10 +65,13 @@ $(LIBFT):
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-_link: $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
 	printf "\n$(GREEN)  ✔  All files compiled!$(RESET)\n\n"
 	printf "$(YELLOW)  ➤  Linking $(NAME)...$(RESET)\n"
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lreadline -o $(NAME)
+
+_header:
+	printf "$(YELLOW)$(BOLD)  ➤  Building $(NAME)...$(RESET)\n\n"
 
 _footer:
 	printf "$(GREEN)$(BOLD)  ✔  $(NAME) built successfully!$(RESET)\n\n"
@@ -99,4 +90,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re _header _link _footer
+.PHONY: all clean fclean re _header _footer
