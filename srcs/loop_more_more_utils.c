@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 20:04:15 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/14 00:14:00 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -48,7 +48,6 @@ static int	execute_input(t_vars *vars, t_minish *shell)
 int	run_all(t_minish *shell)
 {
 	t_vars	vars;
-	int		tmp;
 
 	vars = (t_vars){0};
 	while (1)
@@ -58,19 +57,20 @@ int	run_all(t_minish *shell)
 			shell->exit = 130;
 			continue ;
 		}
-		tmp = shell->exit;
 		if (!vars.ret)
 			break ;
+		if (!*vars.ret)
+		{
+			free(vars.ret);
+			vars.ret = NULL;
+			continue ;
+		}
 		if (*vars.ret)
 			add_history(vars.ret);
 		if (!handle_input(&vars, shell))
 			continue ;
 		if (execute_input(&vars, shell) == -1)
-		{
-			if (tmp == 130 && vars.ret && vars.ret[0] == 0)
-				shell->exit = 130;
 			break ;
-		}
 	}
 	rl_clear_history();
 	return (shell->exit);
