@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 19:25:35 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 19:26:51 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/13 23:20:09 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ static void	read_heredoc(t_tok *curr, t_minish *shell, int quoted)
 
 	while (1)
 	{
-		line = readline("> ");
+		line = NULL;
+		if (g_sig != SIGINT)
+			line = readline("> ");
 		if (!line || ft_strcmp(line, curr->next->value) == 0)
 		{
-			free(line);
+			if (line)
+				free(line);
 			break ;
 		}
 		if (quoted)
