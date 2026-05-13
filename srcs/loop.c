@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 19:28:52 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:43:53 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -119,11 +119,9 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 {
 	pid_t	last_pid;
 	int		redir_err;
-	int		pipe;
 	int		heredoc_err;
 	int		child_pid;
 
-	pipe = 0;
 	redir_err = open_redir_fds(lexed);
 	open_pipes(lexed);
 	apply_pipes(lexed);
@@ -161,6 +159,8 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 	last_pid = -1;
 	if (g_sig != SIGINT)
 		last_pid = run_pipeline(lexed, shell, has_pipe(lexed));
+	else
+		g_sig = -1;
 	ft_close_heredocs_out(lexed);
 	free_argv(shell->envp);
 	shell->envp = NULL;
