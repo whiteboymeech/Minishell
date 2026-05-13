@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 00:00:00 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 23:32:23 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/11 22:37:38 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -22,6 +22,7 @@ static void	sigint_handler(int sig)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
+		rl_done = 1;
 	}
 }
 

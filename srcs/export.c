@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:08:37 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 19:32:12 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:14:19 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -89,13 +89,16 @@ int	export(t_minish *ev, t_tok *tokens)
 	t_tok	*curr;
 	int		ret;
 
-	if (!tokens || !tokens->next || tokens->next->type == TOKEN_EOF)
+	curr = tokens->next;
+	while (curr && curr->type != TOKEN_EOF
+		&& curr->type != TOKEN_WORD && curr->type != TOKEN_PIPE)
+		curr = curr->next;
+	if (!curr || curr->type == TOKEN_EOF || curr->type == TOKEN_PIPE)
 	{
 		print_env(ev->env);
 		return (0);
 	}
 	ret = 0;
-	curr = tokens->next;
 	while (curr && curr->type == TOKEN_WORD)
 	{
 		if (curr->value[0] == '=')
@@ -104,7 +107,7 @@ int	export(t_minish *ev, t_tok *tokens)
 			ft_putstr_fd(curr->value, 2);
 			ft_putendl_fd("': not a valid identifier", 2);
 			ret = 1;
-		}
+ 		}
 		else if (export_one(ev, curr->value) != 0)
 			ret = 1;
 		curr = curr->next;

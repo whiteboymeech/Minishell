@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 02:56:55 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/11 22:41:09 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -19,7 +19,7 @@ static char	*build_prompt(void)
 
 	dir = getcwd(NULL, 0);
 	if (!dir)
-		return (ft_strdup("minishell$ "));
+		return (NULL);
 	tmp = ft_strjoin(dir, "$ ");
 	free(dir);
 	if (!tmp)
@@ -76,13 +76,22 @@ int	ft_read_prompt(char **ret)
 
 	if (!isatty(STDIN_FILENO))
 		return (read_non_interactive(ret));
+	rl_done = 0;
 	prompt = build_prompt();
 	*ret = readline(prompt);
 	free(prompt);
 	if (!(*ret))
 	{
+		g_sig = 0;
 		write(1, "exit\n", 5);
 		return (0);
+	}
+	if (g_sig == SIGINT)
+	{
+		g_sig = 0;
+		free(*ret);
+		*ret = NULL;
+		return (1);
 	}
 	return (0);
 }

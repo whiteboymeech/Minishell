@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 02:16:49 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 23:35:18 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/12 22:01:43 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -52,6 +52,11 @@ static void	read_heredoc(t_tok *curr, t_minish *shell, int quoted)
 			line = read_heredoc_line_interactive();
 		else
 			line = read_heredoc_line_fd();
+		if (g_sig == SIGINT)
+		{
+			free(line);
+			break ;
+		}
 		if (!line || ft_strcmp(line, curr->next->value) == 0)
 		{
 			free(line);
@@ -90,12 +95,33 @@ static t_tok	*find_content_tok(t_tok *heredoc_tok)
 	return (last_word);
 }
 
+// void	max_heredoc_error(void)
+// {
+	// ft_putstr_fd("minishell: ", 2);
+	// ft_putendl_fd("maximum here-document count exceeded", 2);
+// }
+// 
+// static void	close_remaining_heredocs(t_tok *curr)
+// {
+	// while (curr && curr->type != TOKEN_EOF)
+	// {
+		// if (curr->type == TOKEN_HEREDOC)
+		// {
+			// close(curr->pipe.p[1]);
+			// close(curr->pipe.p[0]);
+		// }
+		// curr = curr->next;
+	// }
+// }
 void	get_heredocs(t_tok *lexed, t_minish *shell)
 {
 	t_tok	*curr;
 	t_tok	*content_tok;
+	// int		count;
 
 	curr = lexed;
+	// count = 0;
+	// g_sig = 0;
 	while (curr && curr->type != TOKEN_EOF)
 	{
 		if (curr->type == TOKEN_HEREDOC && curr->next
@@ -108,7 +134,7 @@ void	get_heredocs(t_tok *lexed, t_minish *shell)
 				content_tok->type = TOKEN_ERROR;
 			}
 			else
-				read_heredoc(curr, shell, curr->heredoc_quoted);
+			read_heredoc(curr, shell, curr->heredoc_quoted);
 		}
 		curr = curr->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:54:02 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 23:51:43 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/12 22:25:51 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ typedef struct s_vars
 	t_tok			*lexed;
 }					t_vars;
 
-
 typedef struct s_action
 {
 	int				fd_in;
@@ -197,6 +196,7 @@ char				*word_is_exe(char *word, char **paths);
 char				**ft_build_exe_argv(t_tok *lex);
 char				is_sep(char c);
 int					append_piece(char **res, char *piece);
+int					is_redir_target(t_tok *tok);
 int					open_redir_fds(t_tok *lexed);
 int					echo(t_tok *tokens);
 int					export_one(t_minish *ev, char *arg);

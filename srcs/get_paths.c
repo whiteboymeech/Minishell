@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 19:56:33 by mabenois          #+#    #+#             */
-/*   Updated: 2026/05/04 19:22:36 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/10 22:27:48 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -67,18 +67,17 @@ static char	*search_in_paths(char *word, char **paths)
 char	*word_is_exe(char *word, char **paths)
 {
 	static char	*dot_path[] = {".", NULL};
-	struct stat	st;
+	// struct stat	st;
 
 	if (!word)
 		return (NULL);
-	if (word[0] == '/' || (word[0] == '.' && word[1] == '/'))
+	if (word[0] == '/' || (word[0] == '.' && word[1] == '/') || (word[0] == '.'
+			&& word[1] == '.' && word[2] == '/'))
 	{
-		if (stat(word, &st) != 0)
-			return (NULL);
-		if (S_ISREG(st.st_mode))
-			return (ft_strdup(word));
-		if (access(word, X_OK) != 0)
-			return (ft_strdup(word));
+		// if (S_ISREG(st.st_mode))
+			// return (ft_strdup(word));
+		// if (access(word, X_OK) != 0)
+			// return (ft_strdup(word));
 		return (ft_strdup(word));
 	}
 	if (!paths)

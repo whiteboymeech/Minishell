@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 16:03:01 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 23:24:20 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/12 22:30:09 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -79,14 +79,25 @@ static int	is_numeric(const char *str)
 	return (1);
 }
 
+char	*trim_space(char *value)
+{
+	while (*value == ' ' || *value == '\t')
+		value++;
+	return (value);
+}
+
 void	verify_args(t_tok *arg, t_minish *shell)
 {
-	if (!arg || arg->type == TOKEN_EOF)
+	char	*val;
+
+	if (!arg || arg->type == TOKEN_EOF || arg->type == TOKEN_PIPE)
 	{
 		make_dissapear(shell);
 		exit(shell->exit);
 	}
-	if (!is_numeric(arg->value) || is_out_of_range(arg->value))
+	if (arg)
+		val = trim_space(arg->value);
+	if (!is_numeric(val) || is_out_of_range(val))
 	{
 		ft_putstr_fd("minishell: exit: ", 2);
 		ft_putstr_fd(arg->value, 2);
@@ -103,8 +114,15 @@ int	ft_exit(t_tok *tokens, t_minish *shell)
 
 	code = 0;
 	arg = tokens->next;
+	while (arg && arg->type != TOKEN_EOF && arg->type != TOKEN_PIPE)
+	{
+		if (arg->type == TOKEN_WORD && !is_redir_target(arg))
+			break ;
+		arg = arg->next;
+	}
 	verify_args(arg, shell);
-	if (arg->next && arg->next->type == TOKEN_WORD)
+	if (arg && arg->next && arg->next->type == TOKEN_WORD
+		&& !is_redir_target(arg->next))
 	{
 		ft_putendl_fd("minishell: exit: too many arguments", 2);
 		return (1);

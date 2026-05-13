@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@43.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 23:31:15 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/10 00:05:15 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:40:55 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -45,6 +45,11 @@ static void	exec_child(t_tok *lex, char *path, char **argv, t_exec_ctx *ctx)
 		ft_putstr_fd(path, 2);
 		ft_putendl_fd(": Is a directory", 2);
 	}
+	else if (err == ENOENT)
+	{
+		ft_putstr_fd(lex->value, 2);
+		ft_putendl_fd(": No such file or directory", 2);
+	}
 	else if (err == EACCES)
 	{
 		ft_putstr_fd(path, 2);
@@ -76,7 +81,16 @@ pid_t	ft_exec_if_found(t_tok *lex, char **paths, t_exec_ctx *ctx)
 	{
 		ft_putstr_fd(lex->value, 2);
 		ft_putendl_fd(": command not found", 2);
-		return (-1);
+		child_pid = fork();
+		if (child_pid == 0)
+		{
+			setup_fds(ctx);
+			close_pipe_fds(ctx->tokens, ctx->fd_in, ctx->fd_out);
+			close_redir_fds(ctx->tokens);
+			make_dissapear(ctx->shell);
+			exit(127);
+		}
+		return (child_pid);
 	}
 	exe_argv = ft_build_exe_argv(lex);
 	if (!exe_argv)

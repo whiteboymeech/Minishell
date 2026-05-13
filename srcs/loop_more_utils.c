@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:30:11 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 23:51:59 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/11 18:25:30 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -83,11 +83,46 @@ pid_t	exec_token(t_tok *curr, t_minish *shell, int piped)
 	pid_t		pid;
 	int			result;
 	t_exec_ctx	ctx;
+	int			sv_out;
+	int			sv_in;
 
 	result = -1;
 	pid = 0;
 	if (!piped)
-		result = run(curr, shell);
+	{
+		if (!ft_strcmp(curr->value, "exit"))
+		{
+			result = run(curr, shell);
+			if (result != -1)
+			{
+				shell->exit = result;
+				return (-2);
+			}
+		}
+		else
+		{
+			sv_out = dup(STDOUT_FILENO);
+			sv_in = dup(STDIN_FILENO);
+			if (curr->fd_out != -1 && curr->fd_out != STDOUT_FILENO)
+				dup2(curr->fd_out, STDOUT_FILENO);
+			if (curr->fd_in != -1 && curr->fd_in != STDIN_FILENO)
+				dup2(curr->fd_in, STDIN_FILENO);
+			result = run(curr, shell);
+			dup2(sv_out, STDOUT_FILENO);
+			dup2(sv_in, STDIN_FILENO);
+			close(sv_out);
+			close(sv_in);
+			if (result != -1)
+			{
+				if (curr->fd_out != -1 && curr->fd_out != STDOUT_FILENO)
+					close(curr->fd_out);
+				if (curr->fd_in != -1 && curr->fd_in != STDIN_FILENO)
+					close(curr->fd_in);
+				shell->exit = result;
+				return (-2);
+			}
+		}
+	}
 	if (result != -1)
 	{
 		shell->exit = result;

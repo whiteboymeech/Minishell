@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 03:35:42 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/11 22:35:36 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -50,10 +50,14 @@ int	run_all(t_minish *shell)
 	while (1)
 	{
 		if (ft_read_prompt(&vars.ret) == 1)
+		{
+			shell->exit = 130;
 			continue ;
+		}
 		if (!vars.ret)
 			break ;
-		add_history(vars.ret);
+		if (*vars.ret)
+			add_history(vars.ret);
 		if (!handle_input(&vars, shell))
 			continue ;
 		execute_input(&vars, shell);
