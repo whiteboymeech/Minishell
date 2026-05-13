@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:54:02 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/12 22:25:51 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:27:14 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void				free_tokens(t_tok **tokens);
 void				free_lexed(t_tok *lex);
 void				update_pwd(t_minish *shell, char *oldpwd);
 void				print_lexer(t_tok *tokens);
-void				parse_pipeline(t_tok *lexed, t_minish *shell);
+int					parse_pipeline(t_tok *lexed, t_minish *shell);
 void				expand_tokens(t_tok **tokens, t_minish *shell);
 void				push_action(t_action **actions, t_action_type type,
 						t_tok *lex);
@@ -218,5 +218,8 @@ int					is_valid_identifier(const char *str);
 int					skip_spaces(char *ret, int i);
 int					add_word(char *ret, int i, t_tok **tokens, int start);
 int					add_token(char *ret, int *i, t_tok **tokens);
+void				sigint_handler(int sig);
+void				sigint_heredoc_handler(int sig);
+void				ft_close_heredocs(t_tok *lexed);
 
 #endif
