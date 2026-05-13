@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 16:25:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 14:49:02 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/14 00:09:24 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -17,7 +17,10 @@ char	*get_oldpwd(t_minish *shell)
 
 	path = get_env_value(shell->env, "OLDPWD");
 	if (!path)
+	{
 		ft_putendl_fd("minishell: cd: OLDPWD not set", 2);
+		return (NULL);
+	}
 	else
 		ft_putendl_fd(path, 1);
 	return (path);
@@ -39,8 +42,6 @@ char	*get_cd_path(t_tok *arg, t_minish *shell)
 		ft_putendl_fd("minishell: cd: too many arguments", 2);
 		return (NULL);
 	}
-	if (!ft_strcmp(arg->value, "-"))
-		return (get_oldpwd(shell));
 	return (arg->value);
 }
 
@@ -53,7 +54,7 @@ void	update_pwd(t_minish *shell, char *oldpwd)
 	if (oldpwd)
 		add_env(&shell->env, "OLDPWD", oldpwd);
 	else
-		add_env(&shell->env, "OLDPWD", "");
+		env_unset(&shell->env, "OLD_PWD");
 	add_env(&shell->env, "PWD", cwd);
 }
 

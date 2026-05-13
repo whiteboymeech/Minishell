@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 19:24:38 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/13 23:36:28 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -59,6 +59,12 @@ int	run_all(t_minish *shell)
 		}
 		if (!vars.ret)
 			break ;
+		if (!*vars.ret)
+		{
+			free(vars.ret);
+			vars.ret = NULL;
+			continue ;
+		}
 		if (*vars.ret)
 			add_history(vars.ret);
 		if (!handle_input(&vars, shell))

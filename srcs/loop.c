@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 19:43:53 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/13 23:31:22 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -135,14 +135,15 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 	{
 		signal(SIGINT, sigint_heredoc_handler);
 		if (heredoc_err == 0)
-		{
 			get_heredocs(lexed, shell);
-			ft_close_heredocs(lexed);
-			close_redir_fds(lexed);
-			close_pipe_fds(lexed, 0, 1);
-			make_dissapear(shell);
+		ft_close_heredocs(lexed);
+		close_redir_fds(lexed);
+		close_pipe_fds(lexed, 0, 1);
+		make_dissapear(shell);
+		if (heredoc_err == -1)
+			exit(2);
+		else
 			exit(0);
-		}
 	}
 	if ((redir_err && !has_pipe(lexed)) || heredoc_err == -1)
 	{
@@ -165,6 +166,11 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 	free_argv(shell->envp);
 	shell->envp = NULL;
 	wait_children(last_pid, shell);
+	if (g_sig == SIGINT)
+	{
+		shell->exit = 130;
+		g_sig = -1;
+	}
 	close_redir_fds(lexed);
 	return (0);
 }
