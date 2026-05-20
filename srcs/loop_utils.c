@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 19:42:55 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/20 17:46:35 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -82,7 +82,7 @@ int	ft_read_prompt(char **ret)
 	free(prompt);
 	if (!(*ret))
 	{
-		g_sig = 0;
+		//g_sig = 0;
 		write(1, "exit\n", 5);
 		return (0);
 	}
