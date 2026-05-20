@@ -6,11 +6,12 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/20 18:05:01 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:46:15 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 #include "libft.h"
+#include <unistd.h>
 
 pid_t	exec_empty_segment(int fd_out, int fd_in, t_minish *shell)
 {

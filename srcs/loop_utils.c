@@ -6,22 +6,21 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/20 17:46:35 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/20 19:01:42 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
 static char	*build_prompt(void)
 {
-	char	*dir;
+	char	dir[4096];
 	char	*tmp;
 	char	*prompt;
 
-	dir = getcwd(NULL, 0);
-	if (!dir)
+
+	if(getcwd(dir, 4096) == NULL)
 		return (NULL);
 	tmp = ft_strjoin(dir, "$ ");
-	free(dir);
 	if (!tmp)
 		return (NULL);
 	prompt = ft_strjoin("Jean Moulin & De Gaulle 200:", tmp);
@@ -78,6 +77,8 @@ int	ft_read_prompt(char **ret)
 		return (read_non_interactive(ret));
 	rl_done = 0;
 	prompt = build_prompt();
+	if (!prompt)
+		return (0);
 	*ret = readline(prompt);
 	free(prompt);
 	if (!(*ret))
