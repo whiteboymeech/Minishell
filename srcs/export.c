@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:08:37 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 19:14:19 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/17 18:25:06 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -67,7 +67,8 @@ int	export_one(t_minish *ev, char *arg)
 	key = get_export_key(arg, eq, &append);
 	if (!key || !is_valid_identifier(key))
 	{
-		ft_putendl_fd("export: not a valid identifier", 2);
+		ft_putendl_fd("export: `", 2);
+		ft_putendl_fd("': not a valid identifier", 2);
 		free(key);
 		return (1);
 	}

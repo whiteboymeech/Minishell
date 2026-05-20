@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/20 19:01:42 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/20 22:04:25 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -17,8 +17,7 @@ static char	*build_prompt(void)
 	char	*tmp;
 	char	*prompt;
 
-
-	if(getcwd(dir, 4096) == NULL)
+	if (getcwd(dir, 4096) == NULL)
 		return (NULL);
 	tmp = ft_strjoin(dir, "$ ");
 	if (!tmp)
@@ -83,7 +82,7 @@ int	ft_read_prompt(char **ret)
 	free(prompt);
 	if (!(*ret))
 	{
-		//g_sig = 0;
+		// g_sig = 0;
 		write(1, "exit\n", 5);
 		return (0);
 	}
