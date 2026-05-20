@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 23:36:28 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/20 17:45:58 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -57,6 +57,8 @@ int	run_all(t_minish *shell)
 			shell->exit = 130;
 			continue ;
 		}
+		if (g_sig == SIGINT)
+			shell->exit = 130;
 		if (!vars.ret)
 			break ;
 		if (!*vars.ret)

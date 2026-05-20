@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 23:31:22 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:05:01 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -112,8 +112,18 @@ static int	ft_heredoc_tok_count(t_tok *lexed)
 
 static void	sigint_parent_handler(int sig)
 {
+	write(1, "\n", 1);
 	g_sig = sig;
 }
+
+void	sigquit_handler(int sig)
+{
+	if (sig == SIGQUIT)
+	{
+		write(1, "Quit\n", 5);
+	}
+}
+
 
 int	parse_pipeline(t_tok *lexed, t_minish *shell)
 {
@@ -154,10 +164,10 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 		return (-1);
 	}
 	wait_children(child_pid, shell);
-	signal(SIGINT, sigint_handler);
 	ft_close_heredocs_in(lexed);
 	shell->envp = env_to_array(shell->env);
 	last_pid = -1;
+	signal(SIGQUIT, sigquit_handler);
 	if (g_sig != SIGINT)
 		last_pid = run_pipeline(lexed, shell, has_pipe(lexed));
 	else
@@ -166,6 +176,8 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 	free_argv(shell->envp);
 	shell->envp = NULL;
 	wait_children(last_pid, shell);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sigint_handler);
 	if (g_sig == SIGINT)
 	{
 		shell->exit = 130;

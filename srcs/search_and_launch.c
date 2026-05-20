@@ -6,10 +6,11 @@
 /*   By: mabenois <marvin@43.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 23:31:15 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/11 17:40:55 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:02:10 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
+#include <signal.h>
 
 void	setup_fds(t_exec_ctx *ctx)
 {

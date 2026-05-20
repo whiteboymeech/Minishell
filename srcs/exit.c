@@ -1,12 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 16:03:01 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/12 22:30:09 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:08:49 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -90,6 +88,7 @@ void	verify_args(t_tok *arg, t_minish *shell)
 {
 	char	*val;
 
+	val = NULL;
 	if (!arg || arg->type == TOKEN_EOF || arg->type == TOKEN_PIPE)
 	{
 		make_dissapear(shell);
