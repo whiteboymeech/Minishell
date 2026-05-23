@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/22 01:01:52 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/23 21:15:20 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -154,7 +154,7 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 		if (heredoc_err == -1)
 			exit(2);
 		else
-			exit(0);
+				exit(0);
 	}
 	if ((redir_err && !has_pipe(lexed)) || heredoc_err == -1)
 	{
@@ -162,7 +162,7 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 		if (heredoc_err == -1)
 			shell->exit = 2;
 		close_redir_fds(lexed);
-		return (-1);
+		return (0);
 	}
 	wait_children(child_pid, shell);
 	ft_close_heredocs_in(lexed);

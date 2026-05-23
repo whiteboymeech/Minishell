@@ -6,11 +6,10 @@
 /*   By: mabenois <mabenois@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 18:25:47 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/20 17:38:08 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/23 21:15:01 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
-#include <unistd.h>
 
 int	main(int ac, char **av, char **envp)
 {
