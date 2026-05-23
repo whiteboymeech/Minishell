@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:18:59 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/09 21:01:08 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/22 01:17:50 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -84,8 +84,10 @@ char	*expand(char *value, t_minish *shell)
 		if (!expand_one(value, &i, &res, shell))
 		{
 			free(res);
+				// free(value);
 			return (NULL);
 		}
 	}
+	// free(value);
 	return (res);
 }

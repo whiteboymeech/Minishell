@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:52:04 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/20 18:46:15 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/22 01:01:52 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -173,6 +173,7 @@ int	parse_pipeline(t_tok *lexed, t_minish *shell)
 		last_pid = run_pipeline(lexed, shell, has_pipe(lexed));
 	else
 		g_sig = -1;
+	close_pipe_fds(lexed, 0, 1);
 	ft_close_heredocs_out(lexed);
 	free_argv(shell->envp);
 	shell->envp = NULL;

@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@43.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 23:31:15 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/20 18:02:10 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/23 20:11:41 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -36,6 +36,15 @@ static void	exec_child(t_tok *lex, char *path, char **argv, t_exec_ctx *ctx)
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	signal(SIGPIPE, SIG_DFL);
+	if (ctx->fd_in == -1 || ctx->fd_out == -1)
+	{
+		close_pipe_fds(ctx->tokens, ctx->fd_in, ctx->fd_out);
+		close_redir_fds(ctx->tokens);
+		free(path);
+		free(argv);
+		make_dissapear(ctx->shell);
+		exit(1);
+	}
 	setup_fds(ctx);
 	close_pipe_fds(ctx->tokens, ctx->fd_in, ctx->fd_out);
 	close_redir_fds(ctx->tokens);
@@ -85,6 +94,13 @@ pid_t	ft_exec_if_found(t_tok *lex, char **paths, t_exec_ctx *ctx)
 		child_pid = fork();
 		if (child_pid == 0)
 		{
+			if (ctx->fd_in == -1 || ctx->fd_out == -1)
+			{
+				close_pipe_fds(ctx->tokens, 0, 1);
+				close_redir_fds(ctx->tokens);
+				make_dissapear(ctx->shell);
+				exit(1);
+			}
 			setup_fds(ctx);
 			close_pipe_fds(ctx->tokens, ctx->fd_in, ctx->fd_out);
 			close_redir_fds(ctx->tokens);
