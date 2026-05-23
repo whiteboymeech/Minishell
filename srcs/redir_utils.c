@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:22:33 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/12 22:18:10 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/23 22:44:12 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -15,32 +15,20 @@ static void	handle_redir_token(t_tok *curr, int *fd_in, int *fd_out,
 		int *redir_failed)
 {
 	if (curr->type == TOKEN_HEREDOC)
-	{
-		// if (*fd_in != 1)
-			// close(*fd_in);
 		*fd_in = curr->pipe.p[0];
-	}
 	else if (curr->type == TOKEN_REDIR_IN)
 	{
 		if (curr->fd_in == -1)
 			*redir_failed = 1;
 		else
-		{
-			// if (*fd_in != -1)
-				// close(*fd_in);
 			*fd_in = curr->fd_in;
-		}
 	}
 	else if (curr->type == TOKEN_REDIR_OUT || curr->type == TOKEN_APPEND)
 	{
 		if (curr->fd_out == -1)
 			*redir_failed = 1;
 		else
-		{
-			// if (*fd_out != -1)
-				// close(*fd_out);
 			*fd_out = curr->fd_out;
-		}
 	}
 }
 

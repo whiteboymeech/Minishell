@@ -9,6 +9,7 @@ SOURCES_BONUS = ft_lstnew_bonus.c\
 				ft_lstdelone_bonus.c
 
 SOURCES = ft_atoi.c\
+		  ft_atol.c \
 		  ft_isalpha.c\
 		  ft_strlen.c\
 		  ft_isalnum.c\

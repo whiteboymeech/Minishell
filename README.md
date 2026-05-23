@@ -149,9 +149,7 @@ All code was written and validated manually. AI was used as a learning assistant
 
 ## Author(s)
 
-* Adam Rolland-Ternoi
-* Manech Benoist Valin 
-*
+* JM ET DG 
 
 ---
 

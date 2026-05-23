@@ -6,24 +6,10 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:30:11 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/11 18:25:30 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/23 22:51:34 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
-
-int	has_pipe(t_tok *lexed)
-{
-	t_tok	*curr;
-
-	curr = lexed;
-	while (curr && curr->type != TOKEN_EOF)
-	{
-		if (curr->type == TOKEN_PIPE)
-			return (1);
-		curr = curr->next;
-	}
-	return (0);
-}
 
 void	wait_children(pid_t last_pid, t_minish *shell)
 {
@@ -78,51 +64,44 @@ pid_t	fork_build(t_tok *curr, t_minish *shell, t_exec_ctx *ctx)
 	return (pid);
 }
 
+static int	run_builtin_unpiped(t_tok *curr, t_minish *shell)
+{
+	int	sv_out;
+	int	sv_in;
+	int	result;
+
+	if (!ft_strcmp(curr->value, "exit"))
+		return (run(curr, shell));
+	sv_out = dup(STDOUT_FILENO);
+	sv_in = dup(STDIN_FILENO);
+	if (curr->fd_out != -1 && curr->fd_out != STDOUT_FILENO)
+		dup2(curr->fd_out, STDOUT_FILENO);
+	if (curr->fd_in != -1 && curr->fd_in != STDIN_FILENO)
+		dup2(curr->fd_in, STDIN_FILENO);
+	result = run(curr, shell);
+	dup2(sv_out, STDOUT_FILENO);
+	dup2(sv_in, STDIN_FILENO);
+	close(sv_out);
+	close(sv_in);
+	if (result != -1)
+	{
+		if (curr->fd_out != -1 && curr->fd_out != STDOUT_FILENO)
+			close(curr->fd_out);
+		if (curr->fd_in != -1 && curr->fd_in != STDIN_FILENO)
+			close(curr->fd_in);
+	}
+	return (result);
+}
+
 pid_t	exec_token(t_tok *curr, t_minish *shell, int piped)
 {
-	pid_t		pid;
-	int			result;
 	t_exec_ctx	ctx;
-	int			sv_out;
-	int			sv_in;
+	int			result;
+	pid_t		pid;
 
 	result = -1;
-	pid = 0;
 	if (!piped)
-	{
-		if (!ft_strcmp(curr->value, "exit"))
-		{
-			result = run(curr, shell);
-			if (result != -1)
-			{
-				shell->exit = result;
-				return (-2);
-			}
-		}
-		else
-		{
-			sv_out = dup(STDOUT_FILENO);
-			sv_in = dup(STDIN_FILENO);
-			if (curr->fd_out != -1 && curr->fd_out != STDOUT_FILENO)
-				dup2(curr->fd_out, STDOUT_FILENO);
-			if (curr->fd_in != -1 && curr->fd_in != STDIN_FILENO)
-				dup2(curr->fd_in, STDIN_FILENO);
-			result = run(curr, shell);
-			dup2(sv_out, STDOUT_FILENO);
-			dup2(sv_in, STDIN_FILENO);
-			close(sv_out);
-			close(sv_in);
-			if (result != -1)
-			{
-				if (curr->fd_out != -1 && curr->fd_out != STDOUT_FILENO)
-					close(curr->fd_out);
-				if (curr->fd_in != -1 && curr->fd_in != STDIN_FILENO)
-					close(curr->fd_in);
-				shell->exit = result;
-				return (-2);
-			}
-		}
-	}
+		result = run_builtin_unpiped(curr, shell);
 	if (result != -1)
 	{
 		shell->exit = result;

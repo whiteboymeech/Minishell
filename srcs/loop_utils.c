@@ -6,10 +6,24 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/22 00:29:11 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/23 22:51:47 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
+
+int	has_pipe(t_tok *lexed)
+{
+	t_tok	*curr;
+
+	curr = lexed;
+	while (curr && curr->type != TOKEN_EOF)
+	{
+		if (curr->type == TOKEN_PIPE)
+			return (1);
+		curr = curr->next;
+	}
+	return (0);
+}
 
 static char	*build_prompt(void)
 {
@@ -82,7 +96,6 @@ int	ft_read_prompt(char **ret)
 	free(prompt);
 	if (!(*ret))
 	{
-		// g_sig = 0;
 		write(1, "exit\n", 5);
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/20 18:47:37 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/05/23 22:49:14 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -45,6 +45,19 @@ static int	execute_input(t_vars *vars, t_minish *shell)
 	return (heredoc_ret);
 }
 
+static void	handle_prompt_result(t_vars *vars, t_minish *shell)
+{
+	if (!*vars->ret)
+	{
+		free(vars->ret);
+		vars->ret = NULL;
+		return ;
+	}
+	add_history(vars->ret);
+	if (handle_input(vars, shell))
+		execute_input(vars, shell);
+}
+
 int	run_all(t_minish *shell)
 {
 	t_vars	vars;
@@ -57,22 +70,9 @@ int	run_all(t_minish *shell)
 			shell->exit = 130;
 			continue ;
 		}
-		if (g_sig == SIGINT)
-			shell->exit = 130;
 		if (!vars.ret)
 			break ;
-		if (!*vars.ret)
-		{
-			free(vars.ret);
-			vars.ret = NULL;
-			continue ;
-		}
-		if (*vars.ret)
-			add_history(vars.ret);
-		if (!handle_input(&vars, shell))
-			continue ;
-		if (execute_input(&vars, shell) == -1)
-			break ;
+		handle_prompt_result(&vars, shell);
 	}
 	rl_clear_history();
 	return (shell->exit);

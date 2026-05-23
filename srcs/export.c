@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:08:37 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/17 18:25:06 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/23 22:59:18 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -59,7 +59,6 @@ int	export_one(t_minish *ev, char *arg)
 {
 	char	*eq;
 	char	*key;
-	char	*exist;
 	int		append;
 	int		ret;
 
@@ -74,8 +73,7 @@ int	export_one(t_minish *ev, char *arg)
 	}
 	if (!eq)
 	{
-		exist = get_env_value(ev->env, key);
-		if (!exist)
+		if (!get_env_value(ev->env, key))
 			add_env(&ev->env, key, NULL);
 		free(key);
 		return (0);
@@ -95,10 +93,7 @@ int	export(t_minish *ev, t_tok *tokens)
 		&& curr->type != TOKEN_WORD && curr->type != TOKEN_PIPE)
 		curr = curr->next;
 	if (!curr || curr->type == TOKEN_EOF || curr->type == TOKEN_PIPE)
-	{
-		print_env(ev->env);
-		return (0);
-	}
+		return (print_env(ev->env), 0);
 	ret = 0;
 	while (curr && curr->type == TOKEN_WORD)
 	{
@@ -108,7 +103,7 @@ int	export(t_minish *ev, t_tok *tokens)
 			ft_putstr_fd(curr->value, 2);
 			ft_putendl_fd("': not a valid identifier", 2);
 			ret = 1;
- 		}
+		}
 		else if (export_one(ev, curr->value) != 0)
 			ret = 1;
 		curr = curr->next;

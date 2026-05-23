@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:54:02 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/13 19:27:14 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/23 23:07:39 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ void				open_pipes(t_tok *lexed);
 void				close_pipe_fds(t_tok *tokens, int keep_in, int keep_out);
 void				apply_pipes(t_tok *lexed);
 void				get_heredocs(t_tok *lexed, t_minish *shell);
+void				ft_close_heredocs_in(t_tok *lexed);
+void				ft_close_heredocs_out(t_tok *lexed);
 void				add_token_back(t_tok **tok, t_tok *new_element);
 void				free_tokens(t_tok **tokens);
 void				free_lexed(t_tok *lex);
@@ -216,6 +218,7 @@ int					run_all(t_minish *shell);
 int					line_index(char *s, int key, int *i);
 int					is_valid_identifier(const char *str);
 int					skip_spaces(char *ret, int i);
+int					ft_heredoc_tok_count(t_tok *lexed);
 int					add_word(char *ret, int i, t_tok **tokens, int start);
 int					add_token(char *ret, int *i, t_tok **tokens);
 void				sigint_handler(int sig);

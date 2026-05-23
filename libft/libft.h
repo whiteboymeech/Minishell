@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 14:33:03 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 19:33:36 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/23 22:57:16 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int					ft_strcspn(char *s, char *reject);
 int					ft_strspn(char *s, char *accept);
 int					ft_atoi(const char *nptr);
 int					ft_isalnum(int c);
+long				ft_atol(const char *str);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
