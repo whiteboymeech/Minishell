@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:35:38 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/23 22:49:14 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/26 18:35:46 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -71,7 +71,11 @@ int	run_all(t_minish *shell)
 			continue ;
 		}
 		if (!vars.ret)
+		{
+			if (g_sig == SIGINT)
+				shell->exit = 130;
 			break ;
+		}
 		handle_prompt_result(&vars, shell);
 	}
 	rl_clear_history();
