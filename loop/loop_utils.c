@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:26:55 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/23 22:51:47 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/26 18:23:14 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -25,15 +25,14 @@ int	has_pipe(t_tok *lexed)
 	return (0);
 }
 
-static char	*build_prompt(void)
+char	*build_prompt(void)
 {
-	char	dir[4096];
-	char	*tmp;
-	char	*prompt;
+	char		dir[PATH_MAX];
+	static char	ret[PATH_MAX];
+	char		*tmp;
+	char		*prompt;
 
-	if (getcwd(dir, 4096) == NULL)
-		return (NULL);
-	tmp = ft_strjoin(dir, "$ ");
+	tmp = get_path_str(dir, ret);
 	if (!tmp)
 		return (NULL);
 	prompt = ft_strjoin("Jean Moulin & De Gaulle 200:", tmp);
@@ -91,7 +90,7 @@ int	ft_read_prompt(char **ret)
 	rl_done = 0;
 	prompt = build_prompt();
 	if (!prompt)
-		return (0);
+		return (1);
 	*ret = readline(prompt);
 	free(prompt);
 	if (!(*ret))

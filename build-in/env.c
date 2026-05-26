@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d43.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2027/03/30 02:30:06 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/08 23:23:35 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:33:37 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -107,10 +107,7 @@ int	env(t_minish *shell, t_tok *tokens)
 		{
 			ft_putstr_fd(curr->key, tokens->fd_out);
 			ft_putstr_fd("=", tokens->fd_out);
-			if (curr->value)
-				ft_putendl_fd(curr->value, tokens->fd_out);
-			else
-				write(1, "\n", 1);
+			ft_putendl_fd(curr->value, tokens->fd_out);
 		}
 		curr = curr->next;
 	}

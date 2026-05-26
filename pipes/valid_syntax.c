@@ -6,12 +6,12 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 18:28:57 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/04 18:42:39 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/25 16:09:12 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
 
-static int	bad_pipe(t_tok *curr, t_minish *shell)
+static int	err_pipe(t_tok *curr, t_minish *shell)
 {
 	if (curr->type != TOKEN_PIPE)
 		return (0);
@@ -23,7 +23,7 @@ static int	bad_pipe(t_tok *curr, t_minish *shell)
 	return (1);
 }
 
-static int	bad_redir(t_tok *curr, t_minish *shell)
+static int	err_redir(t_tok *curr, t_minish *shell)
 {
 	if (curr->type != TOKEN_REDIR_IN && curr->type != TOKEN_REDIR_OUT
 		&& curr->type != TOKEN_APPEND && curr->type != TOKEN_HEREDOC)
@@ -50,7 +50,7 @@ int	validate_syntax(t_tok *lexed, t_minish *shell)
 	}
 	while (curr && curr->type != TOKEN_EOF)
 	{
-		if (bad_pipe(curr, shell) || bad_redir(curr, shell))
+		if (err_pipe(curr, shell) || err_redir(curr, shell))
 			return (1);
 		curr = curr->next;
 	}

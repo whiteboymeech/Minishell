@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 01:54:02 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/23 23:07:39 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/26 18:18:02 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ void				normal_copy(char *value, char **res, char *buffer, int *i);
 void				print_ascii_art(void);
 void				wait_children(pid_t last_pid, t_minish *shell);
 void				write_from_token(t_tok *curr, t_tok *content_tok);
+void				clear_prompt(void);
 void				setup_fds(t_exec_ctx *ctx);
 char				**env_to_array(t_env *env);
 char				*get_env_val(t_env *env, char *key);
@@ -195,6 +196,8 @@ char				*expand_heredoc_line(char *line, t_minish *shell);
 char				**get_paths(char **envp);
 char				**get_paths_from_env(t_env *env);
 char				*word_is_exe(char *word, char **paths);
+char				*build_prompt(void);
+char				*get_path_str(char *dir, char *ret);
 char				**ft_build_exe_argv(t_tok *lex);
 char				is_sep(char c);
 int					append_piece(char **res, char *piece);

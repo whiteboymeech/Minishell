@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/04 19:34:14 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/12 21:58:45 by adarolla         ###   ########.fr       */
+/*   Created: 2026/05/25 17:38:10 by adarolla          #+#    #+#             */
+/*   Updated: 2026/05/25 17:38:13 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	open_pipes(t_tok *lexed)

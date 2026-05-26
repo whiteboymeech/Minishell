@@ -6,46 +6,46 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g
 INCLUDES	= -I./includes -I./$(LIBFT_DIR)
-
-SRCS		= srcs/actions.c \
-			srcs/cd.c \
-			srcs/cd_utils.c \
-			srcs/close.c \
-			srcs/echo.c \
-			srcs/env.c \
-			srcs/env_more_utils.c \
-			srcs/env_utils.c \
-			srcs/exit.c \
-			srcs/expand_more_more_utils.c \
-			srcs/expand_more_utils.c \
-			srcs/expand_tokens.c \
-			srcs/expand_utils.c \
-			srcs/export.c \
-			srcs/export_utils.c \
-			srcs/free.c \
-			srcs/get_paths.c \
-			srcs/heredoc.c \
-			srcs/heredoc_utils.c \
-			srcs/lexer.c \
-			srcs/lexer_more_utils.c \
-			srcs/lexer_utils.c \
-			srcs/loop.c \
-			srcs/loop_more_utils.c \
-			srcs/loop_more_more_utils.c \
-			srcs/loop_more_n_more_utils_again.c \
-			srcs/loop_utils.c \
-			srcs/main.c \
-			srcs/pipes.c \
-			srcs/pwd.c \
-			srcs/redir.c \
-			srcs/redir_utils.c \
-			srcs/run.c \
-			srcs/run_pipeline.c \
-			srcs/search_and_launch.c \
-			srcs/search_and_launch_utils.c \
-			srcs/sig.c \
-			srcs/unset.c \
-			srcs/valid_syntax.c
+SRCS		= build-in/cd.c \
+			build-in/run.c \
+			build-in/pwd.c \
+			build-in/env.c \
+			build-in/echo.c \
+			build-in/exit.c \
+			build-in/unset.c \
+			build-in/export.c \
+			build-in/cd_utils.c \
+			build-in/env_utils.c \
+			build-in/export_utils.c \
+			build-in/env_more_utils.c \
+			expand/expand_utils.c \
+			expand/expand_tokens.c \
+			expand/expand_more_utils.c \
+			expand/expand_more_more_utils.c \
+			loop/loop.c \
+			loop/actions.c \
+			loop/get_paths.c \
+			loop/loop_utils.c \
+			loop/loop_more_utils.c \
+			loop/loop_more_more_utils.c \
+			loop/loop_more_n_more_utils_again.c \
+			loop/loop_more_n_more_n_more_utils_again.c \
+			run/main.c \
+			run/run_pipeline.c \
+			run/search_and_launch.c \
+			run/search_and_launch_utils.c \
+			free/free.c \
+			free/close.c \
+			heredocuments/heredoc.c \
+			heredocuments/heredoc_utils.c \
+			lexer/lexer.c \
+			lexer/lexer_more_utils.c \
+			lexer/lexer_utils.c \
+			pipes/pipes.c \
+			pipes/valid_syntax.c \
+			redirs/redir.c \
+			redirs/redir_utils.c \
+			signal/sig.c \
 
 OBJS		= $(SRCS:.c=.o)
 

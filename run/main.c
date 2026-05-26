@@ -6,7 +6,7 @@
 /*   By: mabenois <mabenois@student.42angouleme.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 18:25:47 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/23 21:15:01 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/26 18:23:41 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"

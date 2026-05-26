@@ -6,7 +6,7 @@
 /*   By: adarolla <marvin@d42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 19:25:35 by adarolla          #+#    #+#             */
-/*   Updated: 2026/05/23 23:00:45 by adarolla         ###   ########.fr       */
+/*   Updated: 2026/05/25 17:33:17 by adarolla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,40 @@ static void	read_heredoc(t_tok *curr, t_minish *shell, int quoted)
 	close(curr->pipe.p[1]);
 }
 
+char	*r_quotes(char *data)
+{
+	int		i;
+	int		j;
+	char	*str;
+	char	quote;
+
+	i = 0;
+	quote = 0;
+	j = 0;
+	str = ft_calloc((ft_strlen(data) + 1), sizeof(char));
+	if (!str)
+		return (NULL);
+	while (data[i])
+	{
+		if ((data[i] == '\'' || data[i] == '\"') && quote == 0)
+			quote = data[i];
+		else if (data[i] == quote)
+			quote = 0;
+		else
+			str[j++] = data[i];
+		i++;
+	}
+	str[j] = 0;
+	return (str);
+}
+
 void	get_heredocs(t_tok *lexed, t_minish *shell)
 {
 	t_tok	*curr;
+	char	*del;
 
 	curr = lexed;
+	del = NULL;
 	while (curr && curr->type != TOKEN_EOF)
 	{
 		if (curr->type == TOKEN_HEREDOC && curr->next
